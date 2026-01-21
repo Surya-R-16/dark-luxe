@@ -1,142 +1,75 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ProductCard } from "@/components/collection/ProductCard";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { products } from "@/data/products"; // Import shared data
+import { products } from "@/data/products"; 
 
 export function HorizontalGallery() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const titleRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(titleRef, { once: true, margin: "-100px" });
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
-
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"],
-    });
-
-    // Only apply transforms on desktop
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-    const titleOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
-    const titleScale = useTransform(scrollYProgress, [0, 0.1], [1, 0.8]);
-
     return (
-        <section
-            id="collection"
-            ref={containerRef}
-            className="relative bg-dark-bg min-h-screen md:h-[500vh]"
-        >
-            {/* Section Title - Sticky on Desktop, Static on Mobile */}
-            <div className="relative md:sticky md:top-0 md:h-screen md:overflow-hidden flex flex-col">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-radial from-accent-purple/5 via-transparent to-transparent pointer-events-none" />
-
-                {/* Title */}
-                <motion.div
-                    ref={titleRef}
-                    className="relative md:absolute top-20 md:top-20 left-1/2 -translate-x-1/2 z-10 w-full px-4 mb-12 md:mb-0"
-                    style={{
-                        opacity: isMobile ? 1 : titleOpacity,
-                        scale: isMobile ? 1 : titleScale
-                    }}
-                >
+        <section id="collection" className="relative bg-dark-bg py-24 md:py-32">
+            <div className="container mx-auto px-6">
+                {/* Header */}
+                <div className="text-center mb-20">
                     <motion.p
-                        className="text-muted-text tracking-[0.4em] uppercase text-xs text-center mb-4"
                         initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-accent-gold tracking-[0.3em] uppercase text-xs mb-4"
                     >
                         The Collection
                     </motion.p>
                     <motion.h2
-                        className="font-serif text-4xl md:text-display text-center"
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="font-serif text-4xl md:text-5xl text-light-text mb-8"
                     >
-                        <span className="text-light-text">Style with </span>
-                        <span className="holographic-text">Purpose</span>
+                        Style with <span className="text-accent-gold italic">Purpose</span>
                     </motion.h2>
-                </motion.div>
-
-                {/* Content Container - Horizontal on Desktop, Vertical on Mobile */}
-                <motion.div
-                    className="relative md:absolute md:top-[45%] md:-translate-y-1/2 md:left-0 flex flex-col md:flex-row items-stretch gap-8 md:gap-16 px-6 md:pl-[15vw] md:pr-[30vw] py-10 md:py-0"
-                    style={{ x: isMobile ? 0 : x }}
-                >
-                    {/* Intro text card */}
-                    <div className="flex-shrink-0 w-full md:w-[350px] flex flex-col justify-center text-center md:text-left">
-                        <TextReveal delay={0.4} type="blur">
-                            <p className="text-lg md:text-xl font-light text-light-text/80 leading-relaxed">
-                                Redefining modern luxury with a conscience—
-                                <span className="text-accent-gold">ethical, cruelty-free, and timeless</span>.
-                                Designed for the woman who leads.
+                    <div className="max-w-2xl mx-auto">
+                        <TextReveal type="blur">
+                            <p className="text-lg text-muted-text font-light leading-relaxed">
+                                Redefining modern luxury with a conscience. 
+                                Ethical, cruelty-free, and timeless designs for the woman who leads.
                             </p>
                         </TextReveal>
-                        <motion.div
-                            className="mt-8 w-16 md:w-24 h-[1px] bg-gradient-to-r from-accent-gold to-transparent mx-auto md:mx-0"
-                            initial={{ scaleX: 0 }}
-                            animate={isInView ? { scaleX: 1 } : {}}
-                            transition={{ duration: 1, delay: 0.8 }}
-                            style={{ transformOrigin: "left" }}
-                        />
                     </div>
+                </div>
 
-                    {/* Product Cards */}
+                {/* Vertical Grid (No side scroll) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
                     {products.map((product, index) => (
-                        <ProductCard
-                            key={product.id}
-                            product={product}
-                            index={index}
-                            scrollProgress={scrollYProgress}
-                            isMobile={isMobile} // Pass the optimization flag
-                        />
-                    ))}
-
-                    {/* End card */}
-                    <div className="flex-shrink-0 w-full md:w-[30vw] md:h-[60vh] flex flex-col justify-center items-center py-10 md:py-0">
-                        <motion.p
-                            className="text-muted-text tracking-[0.3em] uppercase text-sm mb-4"
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            Discover More
-                        </motion.p>
-                        <motion.a
-                            href="https://www.amazon.in"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-serif text-3xl md:text-4xl text-light-text hover:text-accent-gold transition-colors duration-500 text-center"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            data-cursor="hover"
-                        >
-                            Visit Amazon Store →
-                        </motion.a>
-                    </div>
-                </motion.div>
-
-                {/* Progress indicator - Desktop Only */}
-                {!isMobile && (
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-dark-surface overflow-hidden hidden md:block">
                         <motion.div
-                            className="h-full bg-gradient-to-r from-accent-purple to-accent-gold"
-                            style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-                        />
-                    </div>
-                )}
+                            key={product.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="w-full flex justify-center"
+                        >
+                            <ProductCard 
+                                product={product} 
+                                index={index} 
+                                isMobile={true} // Forces the static card style which is robust and clean
+                            />
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Bottom Link */}
+                <div className="text-center mt-20">
+                    <motion.a
+                        href="https://www.amazon.in"
+                        target="_blank"
+                        className="inline-block border-b border-accent-gold text-xl md:text-2xl font-serif text-light-text hover:text-accent-gold transition-colors pb-1"
+                        whileHover={{ y: -2 }}
+                    >
+                        Visit Amazon Store →
+                    </motion.a>
+                </div>
             </div>
         </section>
     );

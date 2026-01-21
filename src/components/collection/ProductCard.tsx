@@ -61,7 +61,7 @@ export function ProductCard({ product, index, scrollProgress, isMobile = false }
     return (
         <motion.div
             ref={cardRef}
-            className={`relative group flex-shrink-0 ${isMobile ? "w-full min-h-[50vh] mb-8" : "w-[25vw] min-w-[300px] h-[65vh]"}`}
+            className={`relative group flex-shrink-0 ${isMobile ? "w-full min-h-[50vh] mb-8" : "w-[22vw] min-w-[280px] h-[55vh]"}`}
             style={cardStyle}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -115,7 +115,7 @@ export function ProductCard({ product, index, scrollProgress, isMobile = false }
 
                     {/* Name */}
                     <motion.h3
-                        className="font-serif text-3xl text-light-text mb-2 drop-shadow-lg"
+                        className="font-serif text-2xl text-light-text mb-2 drop-shadow-lg"
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}

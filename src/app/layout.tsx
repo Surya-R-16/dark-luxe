@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Header } from "@/components/layout/Header";
 
 const playfair = Playfair_Display({
@@ -30,12 +28,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-            <body className="antialiased noise-overlay">
-                <SmoothScrollProvider>
-                    <Header />
-                    <CustomCursor />
-                    {children}
-                </SmoothScrollProvider>
+            <body className="antialiased bg-dark-bg text-light-text">
+                <Header />
+                {children}
             </body>
         </html>
     );

@@ -51,14 +51,6 @@ export function Header() {
                             <span className="absolute bottom-0 left-1/2 w-0 h-[1px] bg-accent-gold group-hover:w-full transition-all duration-300 -translate-x-1/2 ease-premium" />
                         </Link>
                     ))}
-
-                    {/* CTA Button */}
-                    <button
-                        className="px-6 py-2 border border-white/20 rounded-full text-xs tracking-widest hover:bg-white hover:text-black transition-all duration-300 ease-out"
-                        data-cursor="hover"
-                    >
-                        CART (0)
-                    </button>
                 </nav>
 
                 {/* Mobile Menu Toggle (Simplified for now) */}
