@@ -3,7 +3,7 @@
 
 import { useRef, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Float, MeshDistortMaterial, Sphere, Box, useTexture } from "@react-three/drei";
+import { Environment, Float, MeshDistortMaterial, Sphere, Box, useTexture, RoundedBox, Cylinder, Torus } from "@react-three/drei";
 import * as THREE from "three";
 
 interface HandbagModelProps {
@@ -12,74 +12,105 @@ interface HandbagModelProps {
 
 function HandbagModel({ mousePosition }: HandbagModelProps) {
     const meshRef = useRef<THREE.Group>(null);
-    const materialRef = useRef<THREE.MeshStandardMaterial>(null);
 
     useFrame((state) => {
         if (meshRef.current) {
-            // Slow rotation
-            meshRef.current.rotation.y += 0.003;
+            // Very slow, constant majestic rotation
+            meshRef.current.rotation.y += 0.002;
 
-            // Subtle mouse influence
+            // Subtle mouse influence (damped heavily for "weight")
             meshRef.current.rotation.x = THREE.MathUtils.lerp(
                 meshRef.current.rotation.x,
-                mousePosition.y * 0.1,
-                0.05
+                mousePosition.y * 0.05,
+                0.03
             );
             meshRef.current.rotation.z = THREE.MathUtils.lerp(
                 meshRef.current.rotation.z,
-                -mousePosition.x * 0.1,
-                0.05
+                -mousePosition.x * 0.05,
+                0.03
             );
         }
     });
 
     return (
         <Float
-            speed={2}
-            rotationIntensity={0.3}
-            floatIntensity={0.5}
+            speed={1.5} // Slower float for "heaviness"
+            rotationIntensity={0.2}
+            floatIntensity={0.4}
         >
             <group ref={meshRef}>
-                {/* Main body - elongated rounded box to simulate handbag */}
-                <Box args={[2.2, 1.4, 0.9]} position={[0, 0, 0]}>
-                    <MeshDistortMaterial
-                        color="#1a1a1a"
+                {/* --- Main Body --- */}
+                {/* Increased metalness slightly for a sheen, reduced roughness for polished leather look */}
+                <RoundedBox args={[2.2, 1.6, 0.8]} radius={0.1} smoothness={4} position={[0, -0.2, 0]}>
+                    <meshStandardMaterial
+                        color="#0F0F0F"
+                        roughness={0.25}
+                        metalness={0.4}
+                    />
+                </RoundedBox>
+
+                {/* --- Flap --- */}
+                <RoundedBox args={[2.25, 1.0, 0.85]} radius={0.05} smoothness={4} position={[0, 0.2, 0.05]}>
+                    <meshStandardMaterial
+                        color="#0A0A0A"
+                        roughness={0.2}
+                        metalness={0.5}
+                    />
+                </RoundedBox>
+
+                <RoundedBox args={[2.25, 0.2, 0.85]} radius={0.05} smoothness={4} position={[0, 0.7, 0.05]}>
+                    <meshStandardMaterial
+                        color="#0A0A0A"
+                        roughness={0.2}
+                        metalness={0.5}
+                    />
+                </RoundedBox>
+
+
+                {/* --- Handle --- */}
+                <group position={[0, 0.8, 0]}>
+                    <mesh>
+                        <torusGeometry args={[0.7, 0.06, 16, 48, Math.PI]} />
+                        <meshStandardMaterial
+                            color="#050505"
+                            roughness={0.1}
+                            metalness={0.6}
+                        />
+                    </mesh>
+
+                    {/* Handle attachments (Gold rings) - High polish */}
+                    <mesh position={[-0.7, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+                        <torusGeometry args={[0.1, 0.02, 16, 32]} />
+                        <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.05} />
+                    </mesh>
+                    <mesh position={[0.7, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+                        <torusGeometry args={[0.1, 0.02, 16, 32]} />
+                        <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.05} />
+                    </mesh>
+                </group>
+
+                {/* --- Hardware / Accents --- */}
+
+                {/* Clasp (Gold) */}
+                <RoundedBox args={[0.4, 0.2, 0.1]} radius={0.02} smoothness={2} position={[0, -0.2, 0.5]}>
+                    <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.05} />
+                </RoundedBox>
+
+                {/* Vertical Strap Detail */}
+                <RoundedBox args={[0.3, 1.2, 0.05]} radius={0.01} smoothness={2} position={[0, -0.2, 0.45]}>
+                    <meshStandardMaterial
+                        color="#050505"
                         roughness={0.3}
-                        metalness={0.7}
-                        distort={0.1}
-                        speed={2}
+                        metalness={0.2}
                     />
-                </Box>
+                </RoundedBox>
 
-                {/* Handle */}
-                <mesh position={[0, 1, 0]}>
-                    <torusGeometry args={[0.6, 0.08, 16, 32, Math.PI]} />
-                    <meshStandardMaterial
-                        color="#0d0d0d"
-                        roughness={0.4}
-                        metalness={0.8}
-                    />
+                {/* Logo Plate */}
+                <mesh position={[0, 0.3, 0.5]}>
+                    <boxGeometry args={[0.3, 0.08, 0.02]} />
+                    <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.1} />
                 </mesh>
 
-                {/* Gold accent clasp */}
-                <mesh position={[0, 0.1, 0.5]}>
-                    <boxGeometry args={[0.4, 0.15, 0.1]} />
-                    <meshStandardMaterial
-                        color="#C9A227"
-                        roughness={0.2}
-                        metalness={0.9}
-                    />
-                </mesh>
-
-                {/* Gold accent lines */}
-                <mesh position={[0, -0.5, 0.46]}>
-                    <boxGeometry args={[1.8, 0.02, 0.01]} />
-                    <meshStandardMaterial
-                        color="#C9A227"
-                        roughness={0.2}
-                        metalness={0.9}
-                    />
-                </mesh>
             </group>
         </Float>
     );

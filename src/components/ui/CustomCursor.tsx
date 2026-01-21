@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 
 export function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [cursorVariant, setCursorVariant] = useState<"default" | "hover" | "text">("default");
 
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
-    const springConfig = { damping: 25, stiffness: 400 };
+    // Premium smooth spring physics
+    const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -26,52 +28,40 @@ export function CustomCursor() {
     useEffect(() => {
         window.addEventListener("mousemove", moveCursor);
 
-        // Track hoverable elements
-        const hoverableElements = document.querySelectorAll(
-            'a, button, [role="button"], .hoverable, [data-cursor="hover"]'
-        );
+        const handleMouseOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
 
-        const handleMouseEnter = () => setIsHovering(true);
-        const handleMouseLeave = () => setIsHovering(false);
+            // Check for interactive elements
+            if (target.matches('a, button, [role="button"], input, textarea, select')) {
+                setIsHovering(true);
+                setCursorVariant("hover");
+            } else if (target.matches('p, h1, h2, h3, h4, h5, h6, span')) {
+                setCursorVariant("text");
+                setIsHovering(false);
+            } else {
+                setCursorVariant("default");
+                setIsHovering(false);
+            }
 
-        hoverableElements.forEach((el) => {
-            el.addEventListener("mouseenter", handleMouseEnter);
-            el.addEventListener("mouseleave", handleMouseLeave);
-        });
+            // Explicit data-cursor override
+            const cursorType = target.getAttribute("data-cursor");
+            if (cursorType) {
+                setCursorVariant(cursorType as "default" | "hover" | "text");
+                setIsHovering(cursorType === "hover");
+            }
+        };
+
+        window.addEventListener("mouseover", handleMouseOver);
 
         return () => {
             window.removeEventListener("mousemove", moveCursor);
-            hoverableElements.forEach((el) => {
-                el.removeEventListener("mouseenter", handleMouseEnter);
-                el.removeEventListener("mouseleave", handleMouseLeave);
-            });
+            window.removeEventListener("mouseover", handleMouseOver);
         };
     }, [moveCursor]);
 
-    // Re-attach listeners when DOM updates
-    useEffect(() => {
-        const observer = new MutationObserver(() => {
-            const hoverableElements = document.querySelectorAll(
-                'a, button, [role="button"], .hoverable, [data-cursor="hover"]'
-            );
-
-            const handleMouseEnter = () => setIsHovering(true);
-            const handleMouseLeave = () => setIsHovering(false);
-
-            hoverableElements.forEach((el) => {
-                el.addEventListener("mouseenter", handleMouseEnter);
-                el.addEventListener("mouseleave", handleMouseLeave);
-            });
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        return () => observer.disconnect();
-    }, []);
-
     return (
         <>
-            {/* Outer ring */}
+            {/* Main Cursor Ring/Shape */}
             <motion.div
                 className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
                 style={{
@@ -80,29 +70,31 @@ export function CustomCursor() {
                     translateX: "-50%",
                     translateY: "-50%",
                 }}
-                animate={{
-                    width: isHovering ? 60 : 32,
-                    height: isHovering ? 60 : 32,
-                    opacity: isVisible ? 1 : 0,
-                }}
-                transition={{ duration: 0.2 }}
             >
+                {/* Default State: Ring */}
                 <motion.div
-                    className="w-full h-full rounded-full border-2 border-light-text"
                     animate={{
-                        scale: isHovering ? 1 : 1,
-                        borderColor: isHovering ? "#7B3FE4" : "#EAEAEA",
-                        boxShadow: isHovering
-                            ? "0 0 20px rgba(123, 63, 228, 0.6), inset 0 0 20px rgba(123, 63, 228, 0.2)"
-                            : "0 0 10px rgba(234, 234, 234, 0.2)",
+                        width: isHovering ? 64 : 12,
+                        height: isHovering ? 64 : 12,
+                        backgroundColor: isHovering ? "white" : "transparent",
+                        borderWidth: isHovering ? 0 : 2,
+                        borderColor: "white",
+                        borderRadius: isHovering ? "20%" : "50%", // Subtle squaring on hover for "tech" feel
                     }}
-                    transition={{ duration: 0.2 }}
-                />
+                    transition={{
+                        type: "spring",
+                        damping: 25,
+                        stiffness: 300
+                    }}
+                    className="flexItems-center justify-center opacity-80"
+                >
+                    {/* "Magnetic" Pull Text (Optional, keeping simple for now) */}
+                </motion.div>
             </motion.div>
 
-            {/* Inner dot */}
+            {/* Trailing Dot / Accent */}
             <motion.div
-                className="fixed top-0 left-0 w-2 h-2 bg-light-text rounded-full pointer-events-none z-[9999]"
+                className="fixed top-0 left-0 w-1 h-1 bg-accent-gold rounded-full pointer-events-none z-[9999]"
                 style={{
                     x: cursorX,
                     y: cursorY,
@@ -110,10 +102,8 @@ export function CustomCursor() {
                     translateY: "-50%",
                 }}
                 animate={{
-                    scale: isHovering ? 0 : 1,
-                    opacity: isVisible ? 1 : 0,
+                    scale: isHovering ? 0 : 1, // Hide dot when hovering (merged into shape)
                 }}
-                transition={{ duration: 0.15 }}
             />
         </>
     );

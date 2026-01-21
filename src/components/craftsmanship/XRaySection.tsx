@@ -43,6 +43,7 @@ export function XRaySection() {
 
     return (
         <section
+            id="about"
             ref={sectionRef}
             className="relative min-h-screen py-32 bg-dark-bg overflow-hidden"
         >
@@ -112,7 +113,15 @@ export function XRaySection() {
                             >
                                 <div className="relative w-64 h-48">
                                     {/* Wireframe view */}
-                                    <div className="absolute inset-0 border-2 border-accent-purple/50 rounded-lg">
+                                    <div className="absolute inset-0 border-2 border-accent-purple/50 rounded-lg bg-[linear-gradient(rgba(123,63,228,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(123,63,228,0.1)_1px,transparent_1px)] bg-[size:20px_20px]">
+
+                                        {/* Scanning Beam */}
+                                        <motion.div
+                                            className="absolute left-0 right-0 h-[2px] bg-accent-purple shadow-[0_0_15px_rgba(123,63,228,0.8)] z-10"
+                                            animate={{ top: ["0%", "100%", "0%"] }}
+                                            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                                        />
+
                                         {/* Internal structure lines */}
                                         <div className="absolute inset-4 border border-accent-purple/30 rounded border-dashed" />
                                         <div className="absolute top-1/3 left-4 right-4 h-[1px] bg-accent-purple/40" />
@@ -125,15 +134,20 @@ export function XRaySection() {
 
                                         {/* Hardware highlight */}
                                         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-3 border border-accent-gold/60 rounded flex items-center justify-center">
-                                            <div className="w-2 h-2 bg-accent-gold/40 rounded-full" />
+                                            <div className="w-2 h-2 bg-accent-gold/40 rounded-full animate-pulse" />
                                         </div>
 
                                         {/* Measurement annotations */}
-                                        <div className="absolute -right-12 top-1/2 -translate-y-1/2 text-accent-purple/60 text-xs">
+                                        <div className="absolute -right-12 top-1/2 -translate-y-1/2 text-accent-purple/60 text-xs font-mono">
                                             28cm
                                         </div>
-                                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-accent-blue/60 text-xs">
+                                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-accent-blue/60 text-xs font-mono">
                                             38cm
+                                        </div>
+
+                                        {/* Sci-fi Overlay Data */}
+                                        <div className="absolute top-2 left-2 text-[0.5rem] text-accent-purple/40 font-mono leading-none">
+                                            ID: 8X-229<br />n: 99.4%
                                         </div>
                                     </div>
                                     {/* Label */}
@@ -177,8 +191,8 @@ export function XRaySection() {
                     >
                         <TextReveal delay={0.2} type="blur">
                             <p className="text-xl text-light-text/80 leading-relaxed mb-12">
-                                We blend state-of-the-art robotic precision with centuries-old 
-                                artisanal techniques to create bags that are ethically crafted 
+                                We blend state-of-the-art robotic precision with centuries-old
+                                artisanal techniques to create bags that are ethically crafted
                                 and built to last.
                             </p>
                         </TextReveal>
@@ -217,9 +231,14 @@ export function XRaySection() {
                         >
                             <MagneticButton
                                 className="px-8 py-3 border border-accent-gold/50 text-accent-gold text-sm tracking-[0.15em] uppercase hover:bg-accent-gold/10 transition-colors duration-300"
-                                onClick={() => setIsInverted(!isInverted)}
+                                onClick={() => {
+                                    const newInverted = !isInverted;
+                                    setIsInverted(newInverted);
+                                    // Animate slider to 100% (X-Ray) or 0% (Normal)
+                                    setSliderPosition(newInverted ? 100 : 0);
+                                }}
                             >
-                                {isInverted ? "View Normal" : "Toggle X-Ray View"}
+                                {isInverted ? "Reset View" : "Reveal Structure"}
                             </MagneticButton>
                         </motion.div>
                     </motion.div>

@@ -1,0 +1,16 @@
+
+> dark-luxe@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.7s
+ ○ Compiling / ...
+The user aborted a request.
+
+Retrying 1/3...
+ ✓ Compiled / in 9s (2373 modules)
+ GET / 200 in 9209ms
+[?25h
