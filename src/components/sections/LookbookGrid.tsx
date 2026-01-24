@@ -30,11 +30,11 @@ const slides = [
     {
         type: "split-right",
         modelImage: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=2574&auto=format&fit=crop",
-        productImage: "/products/viva-vibe.png",
-        productName: "VIVA VIBE",
+        productImage: "/products/beige-3.jpg",
+        productName: "THE POWER STATEMENT",
         productSubtitle: "Office Bag",
-        productPrice: "₹899",
-        originalPrice: "₹2,099",
+        productPrice: "₹999",
+        originalPrice: "₹2,499",
     },
     {
         type: "brand-story",
@@ -86,30 +86,39 @@ export function LookbookGrid() {
 
 function IntroSlide({ title, subtitle }: { title: string; subtitle: string }) {
     return (
-        <div className="w-full min-h-screen flex">
-            {/* Left: Text (50%) */}
-            <div className="w-1/2 h-screen flex flex-col items-center justify-center gap-4 sticky top-0">
+        <div className="w-full min-h-screen flex items-center justify-center bg-[#F5F5F3] relative overflow-hidden">
+            {/* Subtle decorative element */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#323232]/5 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#323232]/10 rounded-full" />
+
+            {/* Centered content */}
+            <div className="relative z-10 text-center px-8">
                 <Image
                     src="/logos/dark-logo.png"
                     alt="Dark Luxe"
-                    width={200}
-                    height={100}
-                    className="h-28 w-auto object-contain mb-6"
+                    width={220}
+                    height={110}
+                    className="h-28 md:h-36 w-auto object-contain mx-auto mb-10"
                 />
-                <p className="text-lg md:text-xl tracking-[0.25em] text-[#323232] uppercase">
+                <p className="text-xl md:text-2xl tracking-[0.4em] text-[#323232] uppercase mb-4">
                     {title}
                 </p>
-                <p className="text-base md:text-lg tracking-[0.15em] text-[#6b6b6b] italic">
+                <p className="text-lg md:text-xl tracking-[0.15em] text-[#6b6b6b] font-serif italic mb-12">
                     {subtitle}
                 </p>
-            </div>
-            {/* Right: Hero Image (50%) */}
-            <div className="w-1/2 min-h-screen">
-                <img
-                    src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=2574&auto=format&fit=crop"
-                    alt="Campaign Hero"
-                    className="w-full h-full object-cover"
-                />
+                <a
+                    href="https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D"
+                    target="_blank"
+                    className="inline-block text-sm tracking-[0.2em] uppercase text-[#323232] border border-[#323232] px-10 py-4 hover:bg-[#323232] hover:text-white transition-all duration-300"
+                >
+                    Explore Collection
+                </a>
+
+                {/* Scroll indicator */}
+                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+                    <p className="text-xs tracking-[0.2em] text-[#6b6b6b] uppercase">Scroll</p>
+                    <div className="w-px h-8 bg-[#323232]/30" />
+                </div>
             </div>
         </div>
     );
