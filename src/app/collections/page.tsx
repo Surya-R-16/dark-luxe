@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FadeIn } from "@/components/ui/FadeIn";
 
 // Collection data with real Dark Luxe products
 const collections = [
@@ -64,16 +65,22 @@ export default function CollectionsPage() {
             {/* Hero Section */}
             <section className="pt-32 pb-20 px-8">
                 <div className="max-w-6xl mx-auto text-center">
-                    <p className="text-sm tracking-[0.3em] text-[#6b6b6b] uppercase mb-4">
-                        Collections
-                    </p>
-                    <h1 className="text-3xl md:text-4xl font-serif text-[#323232] mb-6">
-                        Crafted for Purpose
-                    </h1>
-                    <p className="text-base md:text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
-                        Each Dark Luxe collection represents our commitment to sustainability,
-                        sophistication, and timeless style—designed for women who lead.
-                    </p>
+                    <FadeIn direction="down">
+                        <p className="text-sm tracking-[0.3em] text-[#6b6b6b] uppercase mb-4">
+                            Collections
+                        </p>
+                    </FadeIn>
+                    <FadeIn delay={0.2}>
+                        <h1 className="text-3xl md:text-4xl font-serif text-[#323232] mb-6">
+                            Crafted for Purpose
+                        </h1>
+                    </FadeIn>
+                    <FadeIn delay={0.4}>
+                        <p className="text-base md:text-lg text-[#6b6b6b] max-w-2xl mx-auto leading-relaxed">
+                            Each Dark Luxe collection represents our commitment to sustainability,
+                            sophistication, and timeless style—designed for women who lead.
+                        </p>
+                    </FadeIn>
                 </div>
             </section>
 
@@ -89,16 +96,22 @@ export default function CollectionsPage() {
                                 }`}
                         >
                             {/* Image */}
-                            <div className="w-full md:w-1/2 aspect-[4/5] relative overflow-hidden">
+                            <FadeIn
+                                direction={index % 2 === 0 ? "right" : "left"}
+                                className="w-full md:w-1/2 aspect-[4/5] relative overflow-hidden"
+                            >
                                 <img
                                     src={collection.image}
                                     alt={collection.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                 />
-                            </div>
+                            </FadeIn>
 
                             {/* Text */}
-                            <div className="w-full md:w-1/2 text-center md:text-left">
+                            <FadeIn
+                                delay={0.2}
+                                className="w-full md:w-1/2 text-center md:text-left"
+                            >
                                 <p className="text-sm tracking-[0.25em] text-[#6b6b6b] uppercase mb-3">
                                     {collection.season}
                                 </p>
@@ -111,7 +124,7 @@ export default function CollectionsPage() {
                                 <span className="text-sm tracking-[0.2em] uppercase text-[#323232] border-b border-[#323232] pb-1 group-hover:opacity-60 transition-opacity">
                                     Shop Collection
                                 </span>
-                            </div>
+                            </FadeIn>
                         </Link>
                     ))}
                 </div>
@@ -120,42 +133,45 @@ export default function CollectionsPage() {
             {/* All Products Grid */}
             <section className="py-20 px-8 border-t border-[#323232]/10">
                 <div className="max-w-6xl mx-auto">
-                    <p className="text-sm tracking-[0.3em] text-[#6b6b6b] uppercase text-center mb-12">
-                        All Products
-                    </p>
+                    <FadeIn>
+                        <p className="text-sm tracking-[0.3em] text-[#6b6b6b] uppercase text-center mb-12">
+                            All Products
+                        </p>
+                    </FadeIn>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {products.map((product) => (
-                            <Link
-                                key={product.name}
-                                href={product.href}
-                                target="_blank"
-                                className="group"
-                            >
-                                <div className="aspect-square relative overflow-hidden bg-white mb-4">
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                </div>
-                                <div className="text-center">
-                                    <p className="text-sm tracking-[0.15em] text-[#323232] uppercase font-medium">
-                                        {product.name}
-                                    </p>
-                                    <p className="text-sm text-[#6b6b6b] mt-1">
-                                        {product.subtitle}
-                                    </p>
-                                    <div className="mt-2 flex items-center justify-center gap-2">
-                                        <p className="text-base text-[#323232] font-medium">
-                                            {product.price}
-                                        </p>
-                                        <p className="text-sm text-[#999] line-through">
-                                            {product.originalPrice}
-                                        </p>
+                        {products.map((product, index) => (
+                            <FadeIn key={product.name} delay={index * 0.1}>
+                                <Link
+                                    href={product.href}
+                                    target="_blank"
+                                    className="group block"
+                                >
+                                    <div className="aspect-square relative overflow-hidden bg-white mb-4">
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
                                     </div>
-                                </div>
-                            </Link>
+                                    <div className="text-center">
+                                        <p className="text-sm tracking-[0.15em] text-[#323232] uppercase font-medium">
+                                            {product.name}
+                                        </p>
+                                        <p className="text-sm text-[#6b6b6b] mt-1">
+                                            {product.subtitle}
+                                        </p>
+                                        <div className="mt-2 flex items-center justify-center gap-2">
+                                            <p className="text-base text-[#323232] font-medium">
+                                                {product.price}
+                                            </p>
+                                            <p className="text-sm text-[#999] line-through">
+                                                {product.originalPrice}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </FadeIn>
                         ))}
                     </div>
                 </div>

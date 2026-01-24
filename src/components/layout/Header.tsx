@@ -7,8 +7,8 @@ export function Header() {
     return (
         <header className="absolute top-0 left-0 w-full z-50 px-6 py-5">
             <div className="flex items-center justify-between">
-                {/* Left Nav */}
-                <nav className="flex items-center gap-8">
+                {/* Left Nav - Desktop */}
+                <nav className="hidden md:flex items-center gap-8">
                     <Link
                         href="/shop"
                         className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
@@ -29,6 +29,16 @@ export function Header() {
                     </Link>
                 </nav>
 
+                {/* Left Nav - Mobile */}
+                <nav className="md:hidden flex items-center">
+                    <Link
+                        href="/shop"
+                        className="text-xs tracking-[0.15em] uppercase text-[#323232]"
+                    >
+                        Shop
+                    </Link>
+                </nav>
+
                 {/* Center Logo */}
                 <Link href="/" className="absolute left-1/2 -translate-x-1/2">
                     <Image
@@ -36,13 +46,13 @@ export function Header() {
                         alt="Dark Luxe"
                         width={140}
                         height={70}
-                        className="h-14 w-auto object-contain"
+                        className="h-10 md:h-14 w-auto object-contain"
                         priority
                     />
                 </Link>
 
-                {/* Right Actions */}
-                <nav className="flex items-center gap-8">
+                {/* Right Actions - Desktop */}
+                <nav className="hidden md:flex items-center gap-8">
                     <button className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity">
                         Search
                     </button>
@@ -58,6 +68,16 @@ export function Header() {
                         className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
                     >
                         Shop Now
+                    </Link>
+                </nav>
+
+                {/* Right Actions - Mobile */}
+                <nav className="md:hidden flex items-center">
+                    <Link
+                        href="/about"
+                        className="text-xs tracking-[0.15em] uppercase text-[#323232]"
+                    >
+                        Story
                     </Link>
                 </nav>
             </div>
