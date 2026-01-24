@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ProductCard } from "@/components/collection/ProductCard";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { products } from "@/data/products"; 
+import { products } from "@/data/products";
 
 export function HorizontalGallery() {
     return (
@@ -32,7 +32,7 @@ export function HorizontalGallery() {
                     <div className="max-w-2xl mx-auto">
                         <TextReveal type="blur">
                             <p className="text-lg text-muted-text font-light leading-relaxed">
-                                Redefining modern luxury with a conscience. 
+                                Redefining modern luxury with a conscience.
                                 Ethical, cruelty-free, and timeless designs for the woman who leads.
                             </p>
                         </TextReveal>
@@ -50,10 +50,14 @@ export function HorizontalGallery() {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             className="w-full flex justify-center"
                         >
-                            <ProductCard 
-                                product={product} 
-                                index={index} 
-                                isMobile={true} // Forces the static card style which is robust and clean
+                            <ProductCard
+                                product={{
+                                    id: product.id.toString(),
+                                    name: product.name,
+                                    price: product.price,
+                                    image: product.images[0],
+                                    category: "Collection"
+                                }}
                             />
                         </motion.div>
                     ))}

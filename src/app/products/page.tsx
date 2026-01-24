@@ -9,7 +9,7 @@ export default function ProductsPage() {
     return (
         <main className="bg-dark-bg min-h-screen">
             <Header />
-            
+
             {/* Header Section */}
             <section className="relative pt-32 pb-20 px-6">
                 <div className="max-w-7xl mx-auto text-center">
@@ -29,7 +29,7 @@ export default function ProductsPage() {
                     >
                         Curated <span className="text-accent-gold">Excellence</span>
                     </motion.h1>
-                    <motion.div 
+                    <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ duration: 1, delay: 0.5 }}
@@ -51,10 +51,14 @@ export default function ProductsPage() {
                                 transition={{ duration: 0.8, delay: index * 0.1 }}
                                 className="flex justify-center"
                             >
-                                <ProductCard 
-                                    product={product} 
-                                    index={index} 
-                                    isMobile={true} // Forces the cleaner, non-parallax card style suitable for grids
+                                <ProductCard
+                                    product={{
+                                        id: product.id.toString(),
+                                        name: product.name,
+                                        price: product.price,
+                                        image: product.images[0],
+                                        category: "Collection"
+                                    }}
                                 />
                             </motion.div>
                         ))}

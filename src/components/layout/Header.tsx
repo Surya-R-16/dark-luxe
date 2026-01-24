@@ -1,66 +1,66 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 export function Header() {
-    const { scrollY } = useScroll();
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useMotionValueEvent(scrollY, "change", (latest) => {
-        setIsScrolled(latest > 50);
-    });
-
-    const navLinks = [
-        { name: "Shop", href: "/products" },
-        { name: "Collection", href: "/#collection" },
-        { name: "About", href: "/#about" },
-    ];
-
     return (
-        <motion.header
-            className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-12 md:py-6 transition-colors duration-500 ${isScrolled ? "bg-dark-bg/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
-                }`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-        >
-            <div className="flex items-center justify-between max-w-7xl mx-auto w-full">
-                {/* Logo */}
-                <Link href="/" className="relative z-10 pointer-events-auto">
-                    <div className="relative w-28 h-10 md:w-32 md:h-12 mix-blend-difference">
-                        <Image
-                            src="/logos/Logo1.png"
-                            alt="Dark Luxe Logo"
-                            fill
-                            className="object-contain filter invert grayscale contrast-125"
-                            priority
-                        />
-                    </div>
-                </Link>
-
-                {/* Navigation */}
-                <nav className="hidden md:flex items-center gap-12 pointer-events-auto">
-                    {navLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className="relative group p-2">
-                            <span className="font-sans text-sm tracking-widest uppercase text-light-text/80 group-hover:text-light-text transition-colors duration-300">
-                                {link.name}
-                            </span>
-                            <span className="absolute bottom-0 left-1/2 w-0 h-[1px] bg-accent-gold group-hover:w-full transition-all duration-300 -translate-x-1/2 ease-premium" />
-                        </Link>
-                    ))}
+        <header className="absolute top-0 left-0 w-full z-50 px-6 py-5">
+            <div className="flex items-center justify-between">
+                {/* Left Nav */}
+                <nav className="flex items-center gap-8">
+                    <Link
+                        href="/shop"
+                        className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
+                    >
+                        Shop
+                    </Link>
+                    <Link
+                        href="/collections"
+                        className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
+                    >
+                        Collections
+                    </Link>
+                    <Link
+                        href="/about"
+                        className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
+                    >
+                        About
+                    </Link>
                 </nav>
 
-                {/* Mobile Menu Toggle (Simplified for now) */}
-                <div className="md:hidden pointer-events-auto">
-                    <button className="text-light-text p-2">
-                        <div className="w-6 h-0.5 bg-current mb-1.5" />
-                        <div className="w-4 h-0.5 bg-current ml-auto" />
+                {/* Center Logo */}
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+                    <Image
+                        src="/logos/dark-logo.png"
+                        alt="Dark Luxe"
+                        width={140}
+                        height={70}
+                        className="h-14 w-auto object-contain"
+                        priority
+                    />
+                </Link>
+
+                {/* Right Actions */}
+                <nav className="flex items-center gap-8">
+                    <button className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity">
+                        Search
                     </button>
-                </div>
+                    <Link
+                        href="/account"
+                        className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
+                    >
+                        Account
+                    </Link>
+                    <Link
+                        href="https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D"
+                        target="_blank"
+                        className="text-sm tracking-[0.15em] uppercase text-[#323232] hover:opacity-60 transition-opacity"
+                    >
+                        Shop Now
+                    </Link>
+                </nav>
             </div>
-        </motion.header>
+        </header>
     );
 }

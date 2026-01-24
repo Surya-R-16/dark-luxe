@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-dark: #050505;
-  --text-light: #EAEAEA;
-  --accent-purple: #7B3FE4;
-  --accent-blue: #3F7BE4;
+  --bg-bone: #F5F5F3;
+  --text-dark: #323232;
+  --text-muted: #6b6b6b;
   --accent-gold: #C9A227;
 }
 
@@ -22,135 +21,45 @@ html {
   scroll-behavior: auto;
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
-
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-bone);
+  color: var(--text-dark);
+  font-family: 'Libre Baskerville', 'Georgia', serif;
   overflow-x: hidden;
-  cursor: none;
 }
 
-/* Hide default cursor on interactive elements */
-a, button, [role="button"], input, select, textarea {
-  cursor: none;
-}
-
-/* Scrollbar styling - hidden for smooth scroll experience */
+/* Scrollbar styling - hidden for clean lookbook experience */
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Text Selection */
 ::selection {
-  background: rgba(123, 63, 228, 0.4);
-  color: var(--text-light);
+  background: rgba(50, 50, 50, 0.15);
+  color: var(--text-dark);
 }
 
-/* Video mask for text */
-.video-text-mask {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Holographic gradient text */
-.holographic-text {
-  background: linear-gradient(135deg, #7B3FE4 0%, #3F7BE4 25%, #C9A227 50%, #3F7BE4 75%, #7B3FE4 100%);
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: holographic 8s ease infinite;
-}
-
-@keyframes holographic {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Glass morphism */
-.glass {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Glow effects */
-.glow-purple {
-  box-shadow: 0 0 30px rgba(123, 63, 228, 0.3);
-}
-
-.glow-gold {
-  box-shadow: 0 0 30px rgba(201, 162, 39, 0.3);
-}
-
-/* Noise texture overlay */
-.noise-overlay::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* Smooth fade in */
+/* Fade in */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-out forwards;
-}
-
-/* Line reveal animation */
-.line-reveal {
-  overflow: hidden;
-}
-
-.line-reveal span {
-  display: block;
-  transform: translateY(100%);
-}
-
-/* Blur reveal */
-.blur-reveal {
-  filter: blur(20px);
-  opacity: 0;
-  transition: filter 0.8s ease, opacity 0.8s ease;
-}
-
-.blur-reveal.revealed {
-  filter: blur(0);
-  opacity: 1;
+  animation: fadeIn 0.8s ease-out forwards;
 }

@@ -1,23 +1,12 @@
-"use client";
-
-import { HeroSection } from "@/components/hero/HeroSection";
-import { HorizontalGallery } from "@/components/collection/HorizontalGallery";
-import { XRaySection } from "@/components/craftsmanship/XRaySection";
+import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { LookbookGrid } from "@/components/sections/LookbookGrid";
 
 export default function Home() {
     return (
-        <main className="bg-dark-bg">
-            {/* Hero with 3D Canvas */}
-            <HeroSection />
-
-            {/* Horizontal Scroll Collection Gallery */}
-            <HorizontalGallery />
-
-            {/* X-Ray Craftsmanship Section */}
-            <XRaySection />
-
-            {/* Footer */}
+        <main className="bg-[#F5F5F3]">
+            <Header />
+            <LookbookGrid />
             <Footer />
         </main>
     );

@@ -1,155 +1,139 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
-    collection: ["The Noir", "The Eclipse", "The Obsidian", "The Phantom"],
-    about: ["Our Story", "Craftsmanship", "Sustainability", "Careers"],
-    support: ["Contact", "Shipping", "Returns", "FAQ"],
+    about: [
+        { name: "Our Story", href: "/about" },
+        { name: "Craftsmanship", href: "/craftsmanship" },
+        { name: "Sustainability", href: "/sustainability" },
+        { name: "Vegan & Cruelty-Free", href: "/ethics" },
+    ],
+    shop: [
+        { name: "Office Bags", href: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" },
+        { name: "New Arrivals", href: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" },
+        { name: "Best Sellers", href: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" },
+    ],
+    support: [
+        { name: "Contact Us", href: "/contact" },
+        { name: "FAQ", href: "/faq" },
+        { name: "Shipping & Returns", href: "/shipping" },
+    ],
+    connect: [
+        { name: "Instagram", href: "https://instagram.com" },
+        { name: "Amazon Store", href: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" },
+    ],
 };
 
 export function Footer() {
-    const footerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(footerRef, { once: true, margin: "-100px" });
-
-    const { scrollYProgress } = useScroll({
-        target: footerRef,
-        offset: ["start end", "end end"],
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-
     return (
-        <footer
-            ref={footerRef}
-            className="relative bg-dark-bg border-t border-white/5"
-        >
-            {/* Top gradient */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-dark-surface/50 to-transparent pointer-events-none" />
+        <footer className="bg-[#F5F5F3] border-t border-[#323232]/10 py-20 px-8">
+            <div className="max-w-6xl mx-auto">
+                {/* Brand Statement */}
+                <div className="mb-14 text-center">
+                    <Image
+                        src="/logos/dark-logo.png"
+                        alt="Dark Luxe"
+                        width={120}
+                        height={60}
+                        className="h-14 w-auto object-contain mx-auto mb-5"
+                    />
+                    <p className="text-sm tracking-[0.2em] text-[#6b6b6b] uppercase">
+                        Crafting Luxury with Elegance
+                    </p>
+                </div>
 
-            <motion.div
-                className="max-w-7xl mx-auto px-8 py-24"
-                style={{ y, opacity }}
-            >
-                <div className="grid lg:grid-cols-12 gap-16">
-                    {/* Brand */}
-                    <div className="lg:col-span-4">
-                        <motion.h2
-                            className="font-serif text-4xl mb-4"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <span className="holographic-text">DARK</span>{" "}
-                            <span className="text-light-text">LUXE</span>
-                        </motion.h2>
-                        <motion.p
-                            className="text-muted-text text-sm leading-relaxed mb-8"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.1 }}
-                        >
-                            Where darkness meets luxury. Handcrafted leather goods
-                            for those who dare to stand apart.
-                        </motion.p>
-
-                        {/* Contact Info */}
-                        <div className="mb-8">
-                            <h3 className="text-accent-gold text-xs tracking-[0.3em] uppercase mb-4">Contact</h3>
-                            <div className="space-y-2">
-                                <p className="text-muted-text text-sm">
-                                    <span className="block text-light-text mb-1">Email</span>
-                                    darkluxebags@gmail.com
-                                </p>
-                                <p className="text-muted-text text-sm">
-                                    <span className="block text-light-text mb-1">Phone</span>
-                                    +91 96775 77899
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Newsletter */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <p className="text-light-text text-sm mb-4">Join the darkness</p>
-                            <div className="flex">
-                                <input
-                                    type="email"
-                                    placeholder="Your email"
-                                    className="flex-1 bg-dark-surface border border-white/10 px-4 py-3 text-light-text text-sm placeholder:text-muted-text focus:outline-none focus:border-accent-gold/50 transition-colors"
-                                />
-                                <MagneticButton
-                                    className="px-6 py-3 bg-accent-gold text-dark-bg text-sm font-medium tracking-wide hover:bg-liquid-gold transition-colors"
-                                    strength={0.2}
-                                >
-                                    Subscribe
-                                </MagneticButton>
-                            </div>
-                        </motion.div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+                    {/* About */}
+                    <div>
+                        <h4 className="text-sm tracking-[0.2em] uppercase text-[#323232] mb-6 font-medium">
+                            About
+                        </h4>
+                        <ul className="space-y-4">
+                            {footerLinks.about.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-sm tracking-[0.05em] text-[#6b6b6b] hover:text-[#323232] transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    {/* Links */}
-                    <div className="lg:col-span-8 grid sm:grid-cols-3 gap-12">
-                        {Object.entries(footerLinks).map(([category, links], catIndex) => (
-                            <motion.div
-                                key={category}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ duration: 0.8, delay: 0.3 + catIndex * 0.1 }}
-                            >
-                                <h3 className="text-accent-gold text-xs tracking-[0.3em] uppercase mb-6">
-                                    {category}
-                                </h3>
-                                <ul className="space-y-4">
-                                    {links.map((link, linkIndex) => (
-                                        <li key={link}>
-                                            <motion.a
-                                                href="#"
-                                                className="text-muted-text text-sm hover:text-light-text transition-colors duration-300 inline-block"
-                                                whileHover={{ x: 5 }}
-                                                data-cursor="hover"
-                                            >
-                                                {link}
-                                            </motion.a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
+                    {/* Shop */}
+                    <div>
+                        <h4 className="text-sm tracking-[0.2em] uppercase text-[#323232] mb-6 font-medium">
+                            Shop
+                        </h4>
+                        <ul className="space-y-4">
+                            {footerLinks.shop.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        target="_blank"
+                                        className="text-sm tracking-[0.05em] text-[#6b6b6b] hover:text-[#323232] transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Support */}
+                    <div>
+                        <h4 className="text-sm tracking-[0.2em] uppercase text-[#323232] mb-6 font-medium">
+                            Support
+                        </h4>
+                        <ul className="space-y-4">
+                            {footerLinks.support.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-sm tracking-[0.05em] text-[#6b6b6b] hover:text-[#323232] transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Connect */}
+                    <div>
+                        <h4 className="text-sm tracking-[0.2em] uppercase text-[#323232] mb-6 font-medium">
+                            Connect
+                        </h4>
+                        <ul className="space-y-4">
+                            {footerLinks.connect.map((link) => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        target="_blank"
+                                        className="text-sm tracking-[0.05em] text-[#6b6b6b] hover:text-[#323232] transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
 
-                {/* Bottom bar */}
-                <motion.div
-                    className="mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                    <p className="text-muted-text text-xs">
-                        © 2024 Dark Luxe. All rights reserved.
+                {/* Bottom */}
+                <div className="flex flex-col md:flex-row items-center justify-between pt-10 border-t border-[#323232]/10">
+                    <p className="text-sm tracking-[0.05em] text-[#6b6b6b]">
+                        © 2026 Dark Luxe. All rights reserved. | Cruelty-Free & Vegan
                     </p>
-                    <div className="flex gap-8">
-                        {["Instagram", "Twitter", "Pinterest"].map((social) => (
-                            <motion.a
-                                key={social}
-                                href="#"
-                                className="text-muted-text text-xs hover:text-accent-gold transition-colors"
-                                whileHover={{ y: -2 }}
-                                data-cursor="hover"
-                            >
-                                {social}
-                            </motion.a>
-                        ))}
-                    </div>
-                </motion.div>
-            </motion.div>
+                    <p className="text-sm tracking-[0.05em] text-[#6b6b6b] mt-4 md:mt-0">
+                        Made in India 🇮🇳
+                    </p>
+                </div>
+            </div>
         </footer>
     );
 }
