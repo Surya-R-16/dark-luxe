@@ -21,7 +21,7 @@ const footerLinks = {
         { name: "Shipping & Returns", href: "/shipping" },
     ],
     connect: [
-        { name: "Instagram", href: "https://instagram.com" },
+        { name: "Instagram", href: "https://www.instagram.com/darkluxeonline/" },
         { name: "Amazon Store", href: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" },
     ],
 };

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville } from "next/font/google";
 import "./globals.css";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
 const baskerville = Libre_Baskerville({
     subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={baskerville.variable}>
             <body className="antialiased bg-[#F5F5F3] text-[#323232]">
+                <SmoothScroll />
                 {children}
             </body>
         </html>

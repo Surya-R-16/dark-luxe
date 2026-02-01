@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { Reveal } from "@/components/ui/Reveal";
 
 // Real product data from Dark Luxe Amazon Store with actual product images
 const slides = [
@@ -89,12 +89,16 @@ function IntroSlide({ title, subtitle }: { title: string; subtitle: string }) {
     return (
         <div className="w-full min-h-screen flex items-center justify-center bg-[#F5F5F3] relative overflow-hidden">
             {/* Subtle decorative element */}
-            <FadeIn delay={0.2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#323232]/5 rounded-full" />
-            <FadeIn delay={0.4} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#323232]/10 rounded-full" />
+            <Reveal delay={0.2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-[#323232]/5 rounded-full">
+                <div className="w-full h-full" />
+            </Reveal>
+            <Reveal delay={0.4} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-[#323232]/10 rounded-full">
+                <div className="w-full h-full" />
+            </Reveal>
 
             {/* Centered content */}
             <div className="relative z-10 text-center px-8">
-                <FadeIn direction="down">
+                <Reveal yOffset={-20}>
                     <Image
                         src="/logos/dark-logo.png"
                         alt="Dark Luxe"
@@ -102,18 +106,18 @@ function IntroSlide({ title, subtitle }: { title: string; subtitle: string }) {
                         height={110}
                         className="h-28 md:h-36 w-auto object-contain mx-auto mb-10"
                     />
-                </FadeIn>
-                <FadeIn delay={0.2}>
+                </Reveal>
+                <Reveal delay={0.2}>
                     <p className="text-xl md:text-2xl tracking-[0.4em] text-[#323232] uppercase mb-4">
                         {title}
                     </p>
-                </FadeIn>
-                <FadeIn delay={0.4}>
+                </Reveal>
+                <Reveal delay={0.4}>
                     <p className="text-lg md:text-xl tracking-[0.15em] text-[#6b6b6b] font-serif italic mb-12">
                         {subtitle}
                     </p>
-                </FadeIn>
-                <FadeIn delay={0.6} direction="up">
+                </Reveal>
+                <Reveal delay={0.6}>
                     <a
                         href="https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D"
                         target="_blank"
@@ -121,13 +125,13 @@ function IntroSlide({ title, subtitle }: { title: string; subtitle: string }) {
                     >
                         Explore Collection
                     </a>
-                </FadeIn>
+                </Reveal>
 
                 {/* Scroll indicator */}
-                <FadeIn delay={1.0} className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+                <Reveal delay={1.0} className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
                     <p className="text-xs tracking-[0.2em] text-[#6b6b6b] uppercase">Scroll</p>
                     <div className="w-px h-8 bg-[#323232]/30" />
-                </FadeIn>
+                </Reveal>
             </div>
         </div>
     );
@@ -152,25 +156,25 @@ function SplitSlideRight({
         <div className="w-full min-h-screen flex flex-col md:flex-row">
             {/* Left: Product Still (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen flex flex-col items-center justify-center p-8 md:p-16 bg-[#F5F5F3]">
-                <FadeIn className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
+                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
                     <img
                         src={productImage}
                         alt={productName}
                         className="max-h-full max-w-full object-contain"
                     />
-                </FadeIn>
+                </Reveal>
                 <div className="mt-10 text-center">
-                    <FadeIn delay={0.2}>
+                    <Reveal delay={0.2}>
                         <p className="text-base md:text-lg tracking-[0.2em] text-[#323232] uppercase font-medium">
                             {productName}
                         </p>
-                    </FadeIn>
-                    <FadeIn delay={0.3}>
+                    </Reveal>
+                    <Reveal delay={0.3}>
                         <p className="text-sm md:text-base tracking-[0.1em] text-[#6b6b6b] mt-1">
                             {productSubtitle}
                         </p>
-                    </FadeIn>
-                    <FadeIn delay={0.4}>
+                    </Reveal>
+                    <Reveal delay={0.4}>
                         <div className="mt-3 flex items-center justify-center gap-3">
                             <p className="text-lg md:text-xl tracking-[0.1em] text-[#323232] font-semibold">
                                 {productPrice}
@@ -179,18 +183,18 @@ function SplitSlideRight({
                                 {originalPrice}
                             </p>
                         </div>
-                    </FadeIn>
+                    </Reveal>
                 </div>
             </div>
             {/* Right: Model Shot (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                <FadeIn delay={0.2} direction="left" className="w-full h-full">
+                <Reveal delay={0.2} width="100%" className="h-full">
                     <img
                         src={modelImage}
                         alt="Editorial"
                         className="w-full h-full object-cover"
                     />
-                </FadeIn>
+                </Reveal>
             </div>
         </div>
     );
@@ -215,35 +219,35 @@ function SplitSlideLeft({
         <div className="w-full min-h-screen flex flex-col-reverse md:flex-row">
             {/* Left: Model Shot (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                <FadeIn delay={0.2} direction="right" className="w-full h-full">
+                <Reveal delay={0.2} width="100%" className="h-full">
                     <img
                         src={modelImage}
                         alt="Editorial"
                         className="w-full h-full object-cover"
                     />
-                </FadeIn>
+                </Reveal>
             </div>
             {/* Right: Product Still (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen flex flex-col items-center justify-center p-8 md:p-16 bg-[#F5F5F3]">
-                <FadeIn className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
+                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
                     <img
                         src={productImage}
                         alt={productName}
                         className="max-h-full max-w-full object-contain"
                     />
-                </FadeIn>
+                </Reveal>
                 <div className="mt-10 text-center">
-                    <FadeIn delay={0.2}>
+                    <Reveal delay={0.2}>
                         <p className="text-base md:text-lg tracking-[0.2em] text-[#323232] uppercase font-medium">
                             {productName}
                         </p>
-                    </FadeIn>
-                    <FadeIn delay={0.3}>
+                    </Reveal>
+                    <Reveal delay={0.3}>
                         <p className="text-sm md:text-base tracking-[0.1em] text-[#6b6b6b] mt-1">
                             {productSubtitle}
                         </p>
-                    </FadeIn>
-                    <FadeIn delay={0.4}>
+                    </Reveal>
+                    <Reveal delay={0.4}>
                         <div className="mt-3 flex items-center justify-center gap-3">
                             <p className="text-lg md:text-xl tracking-[0.1em] text-[#323232] font-semibold">
                                 {productPrice}
@@ -252,7 +256,7 @@ function SplitSlideLeft({
                                 {originalPrice}
                             </p>
                         </div>
-                    </FadeIn>
+                    </Reveal>
                 </div>
             </div>
         </div>
@@ -263,26 +267,26 @@ function BrandStorySlide({ title }: { title: string }) {
     return (
         <div className="w-full min-h-screen flex items-center justify-center bg-[#F5F5F3] p-8 md:p-16">
             <div className="max-w-4xl text-center">
-                <FadeIn direction="down">
+                <Reveal yOffset={-20}>
                     <p className="text-base md:text-lg tracking-[0.25em] text-[#6b6b6b] uppercase mb-10">
                         {title}
                     </p>
-                </FadeIn>
-                <FadeIn delay={0.2}>
+                </Reveal>
+                <Reveal delay={0.2}>
                     <p className="text-2xl md:text-3xl leading-relaxed text-[#323232] font-serif">
                         Dark Luxe is a modern luxury brand that blends sustainability,
                         sophistication, and style—perfectly designed for women who lead
                         with purpose and presence.
                     </p>
-                </FadeIn>
-                <FadeIn delay={0.4}>
+                </Reveal>
+                <Reveal delay={0.4}>
                     <p className="text-lg md:text-xl leading-relaxed text-[#6b6b6b] mt-10">
                         Rooted in ethical craftsmanship and thoughtful design, we create
                         timeless handbags that elevate everyday looks while staying true
                         to eco-conscious values.
                     </p>
-                </FadeIn>
-                <FadeIn delay={0.6}>
+                </Reveal>
+                <Reveal delay={0.6}>
                     <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
                         <div className="text-center">
                             <p className="text-sm md:text-base tracking-[0.2em] text-[#323232] uppercase font-medium">Cruelty-Free</p>
@@ -299,7 +303,7 @@ function BrandStorySlide({ title }: { title: string }) {
                             <p className="text-sm text-[#6b6b6b] mt-2">Made in India</p>
                         </div>
                     </div>
-                </FadeIn>
+                </Reveal>
             </div>
         </div>
     );

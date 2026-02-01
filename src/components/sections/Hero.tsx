@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -30,10 +31,14 @@ export function Hero() {
             <div className="relative z-10 flex h-full items-center justify-center">
                 <div className="text-center overflow-hidden">
                     <h1 className="font-serif text-hero-clamp text-bone tracking-tight-heading leading-none">
-                        <RevealText text="DARK LUX" delay={0.1} />
+                        <Reveal delay={0.1}>
+                            DARK LUX
+                        </Reveal>
                         <br />
                         <span className="text-gold block mt-2 text-6xl md:text-8xl">
-                            <RevealText text="RESORT '26" delay={0.3} />
+                            <Reveal delay={0.3} width="100%">
+                                RESORT '26
+                            </Reveal>
                         </span>
                     </h1>
                 </div>
@@ -42,21 +47,3 @@ export function Hero() {
     );
 }
 
-function RevealText({ text, delay }: { text: string; delay: number }) {
-    return (
-        <span className="inline-block overflow-hidden pb-4 -mb-4"> {/* Padding/Margin hack for descenders */}
-            <motion.span
-                initial={{ y: "110%" }}
-                animate={{ y: "0%" }}
-                transition={{
-                    duration: 1.2,
-                    ease: [0.22, 1, 0.36, 1], // Custom luxury ease
-                    delay: delay,
-                }}
-                className="inline-block"
-            >
-                {text}
-            </motion.span>
-        </span>
-    );
-}
