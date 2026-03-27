@@ -26,73 +26,76 @@ export function Bag3D() {
         const offset = scroll.offset;
 
         // --- 1. ROTATION (0% - 50%) ---
-        // Rotates the entire bag
-        // We want a slow constant spin initially, then precise control
         if (offset < 0.5) {
-            // Normalize 0-0.5 to 0-1
             const rotationProgress = offset * 2;
-            groupRef.current.rotation.y = rotationProgress * Math.PI * 2; // Full 360 rotation
-            groupRef.current.rotation.x = rotationProgress * 0.2; // Slight tilt
+            const targetRotationY = rotationProgress * Math.PI * 2;
+            const targetRotationX = rotationProgress * 0.2;
+            
+            groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotationY, 0.1);
+            groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetRotationX, 0.1);
         }
 
         // --- 2. EXPLOSION (50% - 80%) ---
-        // Moves internal parts outward
         if (offset >= 0.5 && offset < 0.8) {
-            // Normalize 0.5-0.8 to 0-1
             const explosionProgress = (offset - 0.5) / 0.3;
 
             // Lock moves forward
             if (lockRef.current) {
-                lockRef.current.position.z = 1.5 + explosionProgress * 2;
-                lockRef.current.rotation.z = explosionProgress * Math.PI; // Spin it a bit
+                const targetZ = 1.5 + explosionProgress * 2;
+                const targetRotZ = explosionProgress * Math.PI;
+                lockRef.current.position.z = THREE.MathUtils.lerp(lockRef.current.position.z, targetZ, 0.1);
+                lockRef.current.rotation.z = THREE.MathUtils.lerp(lockRef.current.rotation.z, targetRotZ, 0.1);
             }
 
             // Zipper moves up
             if (zipperRef.current) {
-                zipperRef.current.position.y = 1 + explosionProgress * 1.5;
+                const targetY = 1 + explosionProgress * 1.5;
+                zipperRef.current.position.y = THREE.MathUtils.lerp(zipperRef.current.position.y, targetY, 0.1);
             }
 
             // Logo plate moves forward and up
             if (logoPlateRef.current) {
-                logoPlateRef.current.position.z = 1.2 + explosionProgress * 1.5;
-                logoPlateRef.current.position.y = 0.5 + explosionProgress * 0.5;
+                const targetZ = 1.2 + explosionProgress * 1.5;
+                const targetY = 0.5 + explosionProgress * 0.5;
+                logoPlateRef.current.position.z = THREE.MathUtils.lerp(logoPlateRef.current.position.z, targetZ, 0.1);
+                logoPlateRef.current.position.y = THREE.MathUtils.lerp(logoPlateRef.current.position.y, targetY, 0.1);
             }
 
-            // Body fades slightly to transparent to reveal "internals" (if we had real internals)
-            // or just rotates to a specific angle
-            groupRef.current.rotation.y = Math.PI * 2 + (explosionProgress * 0.5);
+            const targetGroupRotY = Math.PI * 2 + (explosionProgress * 0.5);
+            groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetGroupRotY, 0.1);
         }
 
         // --- 3. REASSEMBLY (80% - 100%) ---
         if (offset >= 0.8) {
-            // Normalize 0.8-1.0 to 0-1 (reversed for coming back)
             const reassemblyProgress = (offset - 0.8) / 0.2;
             const reverse = 1 - reassemblyProgress;
 
-            // Simple lerp back to original positions would be essentially same as above logic, 
-            // but let's make sure it snaps back cleanly or stays exploded depending on design.
-            // The prompt says "Bag reassembles".
+            if (lockRef.current) {
+                const targetZ = 1.5 + reverse * 2;
+                lockRef.current.position.z = THREE.MathUtils.lerp(lockRef.current.position.z, targetZ, 0.1);
+            }
+            if (zipperRef.current) {
+                const targetY = 1 + reverse * 1.5;
+                zipperRef.current.position.y = THREE.MathUtils.lerp(zipperRef.current.position.y, targetY, 0.1);
+            }
+            if (logoPlateRef.current) {
+                const targetZ = 1.2 + reverse * 1.5;
+                logoPlateRef.current.position.z = THREE.MathUtils.lerp(logoPlateRef.current.position.z, targetZ, 0.1);
+            }
 
-            if (lockRef.current) lockRef.current.position.z = 1.5 + reverse * 2;
-            if (zipperRef.current) zipperRef.current.position.y = 1 + reverse * 1.5;
-            if (logoPlateRef.current) logoPlateRef.current.position.z = 1.2 + reverse * 1.5;
-
-            // Rotate to front facing for final shot
-            groupRef.current.rotation.y = Math.PI * 2.5 - (reassemblyProgress * 0.5);
+            const targetGroupRotY = Math.PI * 2.5 - (reassemblyProgress * 0.5);
+            groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetGroupRotY, 0.1);
             groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, 0, 0.1);
         }
 
         // --- BACKGROUND TRANSITION ---
-        // Shifts from #050505 to #1a1a1a as the bag explodes (starts at 0.5)
-        // We use state.scene.background.
         if (state.scene.background instanceof THREE.Color) {
             const startColor = new THREE.Color("#050505");
             const endColor = new THREE.Color("#1a1a1a");
 
             let lerpFactor = 0;
             if (offset > 0.4 && offset < 0.9) {
-                // Transition starts a bit before explosion and holds
-                lerpFactor = (offset - 0.4) / 0.5; // map 0.4-0.9 to 0-1
+                lerpFactor = (offset - 0.4) / 0.5;
                 if (lerpFactor > 1) lerpFactor = 1;
             } else if (offset >= 0.9) {
                 lerpFactor = 1;
@@ -104,10 +107,6 @@ export function Bag3D() {
         }
     });
 
-    // Material setup
-    const textureLoader = new THREE.TextureLoader();
-    // We don't have real textures, so we use standard materials
-
     const leatherMaterial = new THREE.MeshStandardMaterial({
         color: "#1a1a1a",
         roughness: 0.4,
@@ -117,7 +116,7 @@ export function Bag3D() {
     const goldMaterial = new THREE.MeshStandardMaterial({
         color: "#D4AF37",
         roughness: 0.1,
-        metalness: 1, // High metalness for gold
+        metalness: 1,
     });
 
     return (
@@ -131,7 +130,7 @@ export function Bag3D() {
                     castShadow
                     receiveShadow
                 >
-                    <boxGeometry args={[3, 2.5, 1]} /> {/* Placeholder shape */}
+                    <boxGeometry args={[3, 2.5, 1]} />
                 </mesh>
 
                 {/* Flap */}
@@ -163,8 +162,7 @@ export function Bag3D() {
                     </mesh>
                 </group>
 
-                {/* Internal Gold Skeleton (revealed during explosion if body was transparent, 
-                    but here we just move parts. Added for extra cool factor) */}
+                {/* Internal Gold Skeleton */}
                 <mesh position={[0, 0, 0]} scale={[0.9, 0.9, 0.9]}>
                     <boxGeometry args={[3, 2.5, 1]} />
                     <meshBasicMaterial color="#D4AF37" wireframe transparent opacity={0.1} />
