@@ -73,10 +73,12 @@ export default function ShopPage() {
                                         className="group block"
                                     >
                                         <div className="aspect-[4/5] relative overflow-hidden bg-white mb-6">
-                                            <img
+                                            <Image
                                                 src={product.image}
                                                 alt={product.name}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             />
                                             {/* Overlay CTA */}
                                             <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

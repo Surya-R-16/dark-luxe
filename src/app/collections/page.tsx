@@ -99,10 +99,12 @@ export default function CollectionsPage() {
                             <Reveal
                                 className="w-full md:w-1/2 aspect-[4/5] relative overflow-hidden"
                             >
-                                <img
+                                <Image
                                     src={collection.image}
                                     alt={collection.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </Reveal>
 
@@ -150,10 +152,12 @@ export default function CollectionsPage() {
                                         className="group block"
                                     >
                                         <div className="aspect-square relative overflow-hidden bg-white mb-4">
-                                            <img
+                                            <Image
                                                 src={product.image}
                                                 alt={product.name}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                                             />
                                         </div>
                                         <div className="text-center">

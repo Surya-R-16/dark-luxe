@@ -35,12 +35,14 @@ export default function AboutPage() {
             {/* Brand Story - Split Layout */}
             <section className="flex flex-col md:flex-row min-h-screen">
                 {/* Image */}
-                <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                    <Reveal width="100%" className="h-full">
-                        <img
+                <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative">
+                    <Reveal width="100%" className="h-full relative">
+                        <Image
                             src="/products/beige-1.jpg"
                             alt="Dark Luxe craftsmanship"
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </Reveal>
                 </div>
@@ -151,12 +153,14 @@ export default function AboutPage() {
             {/* Product Showcase - Split Layout (reversed) */}
             <section className="flex flex-col md:flex-row-reverse min-h-screen">
                 {/* Image */}
-                <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                    <Reveal width="100%" className="h-full">
-                        <img
+                <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative">
+                    <Reveal width="100%" className="h-full relative">
+                        <Image
                             src="/products/viva-vibe.png"
                             alt="Dark Luxe Viva Vibe"
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
                     </Reveal>
                 </div>
