@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 export function TextureReveal() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [isHovered, setIsHovered] = useState(false);
 
     // Update mouse position
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -24,8 +23,6 @@ export function TextureReveal() {
             ref={containerRef}
             className="relative h-[80vh] w-full bg-obsidian overflow-hidden cursor-none flex items-center justify-center"
             onMouseMove={handleMouseMove}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
         >
             {/* Base Layer - Pitch Black with minimal hint */}
             <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">

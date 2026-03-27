@@ -69,9 +69,10 @@ export default function AboutPage() {
                         </Reveal>
                         <Reveal delay={0.4}>
                             <p className="text-base md:text-lg text-[#6b6b6b] leading-relaxed">
-                                Each Dark Luxe bag is meticulously crafted with a focus on ethical
-                                production and timeless design. You don't just carry a beautiful
+                                each Dark Luxe bag is meticulously crafted with a focus on ethical
+                                production and timeless design. You don&apos;t just carry a beautiful
                                 bag—you carry a belief in a better, more responsible future.
+
                             </p>
                         </Reveal>
                     </div>

@@ -19,7 +19,7 @@ export function Bag3D() {
 
     const scroll = useScroll();
 
-    useFrame((state, delta) => {
+    useFrame((state) => {
         if (!groupRef.current) return;
 
         // Current scroll offset (0 to 1)

@@ -37,7 +37,7 @@ export function Hero() {
                         <br />
                         <span className="text-gold block mt-2 text-6xl md:text-8xl">
                             <Reveal delay={0.3} width="100%">
-                                RESORT '26
+                                RESORT &apos;26
                             </Reveal>
                         </span>
                     </h1>
