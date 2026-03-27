@@ -2,52 +2,13 @@
 
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-
-// Real product data from Dark Luxe Amazon Store with actual product images
-const slides = [
-    {
-        type: "intro",
-        title: "2026",
-        subtitle: "Crafting Luxury with Elegance",
-    },
-    {
-        type: "split-right",
-        modelImage: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=2574&auto=format&fit=crop",
-        productImage: "/products/beige-1.jpg",
-        productName: "THE LADII LEGEND",
-        productSubtitle: "Office Bag",
-        productPrice: "₹1,099",
-        originalPrice: "₹2,999",
-    },
-    {
-        type: "split-left",
-        modelImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2576&auto=format&fit=crop",
-        productImage: "/products/beige-2.jpg",
-        productName: "DARK ONYX TWIN",
-        productSubtitle: "Office Bag",
-        productPrice: "₹1,199",
-        originalPrice: "₹3,499",
-    },
-    {
-        type: "split-right",
-        modelImage: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=2574&auto=format&fit=crop",
-        productImage: "/products/beige-3.jpg",
-        productName: "THE POWER STATEMENT",
-        productSubtitle: "Office Bag",
-        productPrice: "₹999",
-        originalPrice: "₹2,499",
-    },
-    {
-        type: "brand-story",
-        title: "OUR PHILOSOPHY",
-    },
-];
+import { lookbookSlides } from "@/data/products";
 
 export function LookbookGrid() {
     return (
         <section className="bg-[#F5F5F3]">
             {/* Vertical Stack - Normal top-to-bottom scroll */}
-            {slides.map((slide, index) => (
+            {lookbookSlides.map((slide, index) => (
                 <div key={index}>
                     {slide.type === "intro" && (
                         <IntroSlide title={slide.title!} subtitle={slide.subtitle!} />
@@ -105,6 +66,7 @@ function IntroSlide({ title, subtitle }: { title: string; subtitle: string }) {
                         width={220}
                         height={110}
                         className="h-28 md:h-36 w-auto object-contain mx-auto mb-10"
+                        priority
                     />
                 </Reveal>
                 <Reveal delay={0.2}>
@@ -156,11 +118,13 @@ function SplitSlideRight({
         <div className="w-full min-h-screen flex flex-col md:flex-row">
             {/* Left: Product Still (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen flex flex-col items-center justify-center p-8 md:p-16 bg-[#F5F5F3]">
-                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
-                    <img
+                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full relative">
+                    <Image
                         src={productImage}
                         alt={productName}
-                        className="max-h-full max-w-full object-contain"
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </Reveal>
                 <div className="mt-10 text-center">
@@ -187,12 +151,14 @@ function SplitSlideRight({
                 </div>
             </div>
             {/* Right: Model Shot (50%) */}
-            <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                <Reveal delay={0.2} width="100%" className="h-full">
-                    <img
+            <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative">
+                <Reveal delay={0.2} width="100%" className="h-full relative">
+                    <Image
                         src={modelImage}
                         alt="Editorial"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </Reveal>
             </div>
@@ -218,22 +184,26 @@ function SplitSlideLeft({
     return (
         <div className="w-full min-h-screen flex flex-col-reverse md:flex-row">
             {/* Left: Model Shot (50%) */}
-            <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen">
-                <Reveal delay={0.2} width="100%" className="h-full">
-                    <img
+            <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative">
+                <Reveal delay={0.2} width="100%" className="h-full relative">
+                    <Image
                         src={modelImage}
                         alt="Editorial"
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </Reveal>
             </div>
             {/* Right: Product Still (50%) */}
             <div className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen flex flex-col items-center justify-center p-8 md:p-16 bg-[#F5F5F3]">
-                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full">
-                    <img
+                <Reveal className="h-[40vh] md:h-[50vh] flex items-center justify-center w-full relative">
+                    <Image
                         src={productImage}
                         alt={productName}
-                        className="max-h-full max-w-full object-contain"
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </Reveal>
                 <div className="mt-10 text-center">
