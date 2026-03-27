@@ -1,4 +1,4 @@
-export {}
+export * from './types/lookbook';
 
 declare global {
   namespace JSX {
