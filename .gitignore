@@ -21,6 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 ts-debug.log*
+server.log
 
 # Environment variables
 .env
@@ -31,3 +32,10 @@ ts-debug.log*
 
 # Vercel
 .vercel
+
+# Build artifacts
+*.tsbuildinfo
+
+# Stray files
+*.py
+*.pdf

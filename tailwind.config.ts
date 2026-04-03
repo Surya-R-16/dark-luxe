@@ -9,49 +9,35 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                // Dark Lux Palette
-                'obsidian': '#050505', // Deepest Black
-                'charcoal': '#0a0a0a', // Secondary Background
-                'bone': '#F5F5F3',     // Primary Text
-                'gold': '#D4AF37',     // Accents - Muted
-
-                // Semantic Aliases
-                'primary': '#050505',
-                'surface': '#0a0a0a',
-                'text-primary': '#F5F5F3',
-                'text-secondary': '#A8A29E', // Stone-400 for secondary text
+                gold: {
+                  DEFAULT: '#B8975A',
+                  light: '#D4B07A',
+                  dark: '#8A6E3E',
+                },
+                ivory: '#F7F4EE',
+                dark: {
+                  DEFAULT: '#0E0D0B',
+                  mid: '#1C1A16',
+                  soft: '#2A2720',
+                },
+                text: {
+                  muted: '#8A8478',
+                  light: '#C8BFB0',
+                }
             },
             fontFamily: {
-                'serif': ['var(--font-playfair)', 'serif'], // Fallback for Editorial New
-                'sans': ['var(--font-inter)', 'sans-serif'], // Fallback for Inter Tight
+                serif: ['var(--font-cormorant)', 'serif'],
+                jost: ['var(--font-jost)', 'sans-serif'],
+                sans: ['var(--font-jost)', 'sans-serif'],
             },
-            letterSpacing: {
-                'tight-heading': '-0.05em', // "Headings must use -0.05em tracking"
-                'wide-body': '0.1em',       // "Body text must be ... tracking 0.1em"
-                'tighter': '-0.05em',
-                'tight': '-0.025em',
-                'normal': '0em',
-                'wide': '0.025em',
-                'wider': '0.05em',
-                'widest': '0.1em',
+            animation: {
+                'marquee': 'marquee 28s linear infinite',
             },
-            fontSize: {
-                'hero-clamp': ['clamp(3rem, 10vw, 9rem)', { lineHeight: '0.9', letterSpacing: '-0.05em', fontWeight: '400' }], // Adjusted tracking
-                'body-sm': ['12px', { lineHeight: '1.6', letterSpacing: '0.1em' }], // 12px uppercase
-                'body-xs': ['11px', { lineHeight: '1.6', letterSpacing: '0.1em' }],
-            },
-            spacing: {
-                '32': '8rem',
-                '64': '16rem',
-                '128': '32rem', // Massive margins for Savette style
-                'screen-80': '80vh',
-            },
-            transitionTimingFunction: {
-                'luxury': 'cubic-bezier(0.22, 1, 0.36, 1)', // Custom "cinematic" ease
-                'slow-fade': 'cubic-bezier(0.4, 0, 0.2, 1)',
-            },
-            backgroundImage: {
-                'grain': "url('/noise.png')", // Placeholder for texture
+            keyframes: {
+                marquee: {
+                  '0%': { transform: 'translateX(0)' },
+                  '100%': { transform: 'translateX(-50%)' },
+                }
             }
         },
     },

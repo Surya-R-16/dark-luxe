@@ -1,14 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-bone: #F5F5F3;
-  --text-dark: #323232;
-  --text-muted: #6b6b6b;
-  --accent-gold: #C9A227;
+@layer base {
+  :root {
+    --gold: #B8975A;
+    --gold-light: #D4B07A;
+    --gold-dark: #8A6E3E;
+    --ivory: #F7F4EE;
+    --dark: #0E0D0B;
+    --dark-mid: #1C1A16;
+    --dark-soft: #2A2720;
+    --text-muted: #8A8478;
+    --text-light: #C8BFB0;
+  }
+
+  body {
+    @apply bg-[#0E0D0B] text-[#F7F4EE] font-light;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
 }
 
 * {
@@ -18,14 +35,7 @@
 }
 
 html {
-  scroll-behavior: auto;
-}
-
-body {
-  background-color: var(--bg-bone);
-  color: var(--text-dark);
-  font-family: 'Libre Baskerville', 'Georgia', serif;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Scrollbar styling - hidden for clean lookbook experience */
@@ -45,21 +55,29 @@ body {
 
 /* Text Selection */
 ::selection {
-  background: rgba(50, 50, 50, 0.15);
-  color: var(--text-dark);
+  background: rgba(184, 151, 90, 0.3);
+  color: var(--ivory);
 }
 
-/* Fade in */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+/* Fade Up Animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 28s linear infinite;
 }

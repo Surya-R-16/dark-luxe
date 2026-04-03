@@ -1,70 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ProductCard } from "@/components/collection/ProductCard";
 import { products } from "@/data/products";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { ProductGrid } from "@/components/collection/ProductGrid";
 
 export default function ProductsPage() {
     return (
-        <main className="bg-dark-bg min-h-screen">
+        <main className="bg-dark min-h-screen">
             <Header />
 
-            {/* Header Section */}
-            <section className="relative pt-32 pb-20 px-6">
-                <div className="max-w-7xl mx-auto text-center">
-                    <motion.p
+            <section className="relative pt-28 md:pt-40 pb-12 md:pb-20 px-6 md:px-10">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-muted-text tracking-[0.4em] uppercase text-xs mb-4"
+                        className="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase text-gold mb-4 before:content-[''] before:block before:w-[30px] before:h-[1px] before:bg-gold"
                     >
                         The Collection
-                    </motion.p>
+                    </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="font-serif text-5xl md:text-7xl text-light-text mb-8"
+                        className="font-serif text-[clamp(32px,8vw,96px)] font-light leading-none tracking-tight text-ivory mb-8 md:mb-12"
                     >
-                        Curated <span className="text-accent-gold">Excellence</span>
+                        Curated <em className="italic text-gold-light">Excellence</em>
                     </motion.h1>
-                    <motion.div
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="w-24 h-[1px] bg-gradient-to-r from-accent-gold to-transparent mx-auto"
-                    />
                 </div>
             </section>
 
-            {/* Product Grid */}
-            <section className="px-6 pb-32">
+            <section className="px-6 md:px-10 pb-24 md:pb-32">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-                        {products.map((product, index) => (
-                            <motion.div
-                                key={product.id}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.8, delay: index * 0.1 }}
-                                className="flex justify-center"
-                            >
-                                <ProductCard
-                                    product={{
-                                        id: product.id.toString(),
-                                        name: product.name,
-                                        price: product.price,
-                                        image: product.images[0],
-                                        category: "Collection"
-                                    }}
-                                />
-                            </motion.div>
-                        ))}
-                    </div>
+                    <ProductGrid products={products} columns={3} />
                 </div>
             </section>
+
+            <Footer />
         </main>
     );
 }

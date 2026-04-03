@@ -1,6 +1,73 @@
-import { LookbookSlide } from "@/types/lookbook";
+export interface Product {
+    id: number;
+    name: string;
+    price: string;
+    originalPrice: string;
+    tag: string;
+    category: string;
+    description: string;
+    image: string;
+    amazonUrl: string;
+    isComingSoon: boolean;
+    color: string;
+}
 
-export const lookbookSlides: LookbookSlide[] = [
+export const products: Product[] = [
+    {
+        id: 1,
+        name: "The Ladii Legend",
+        price: "₹1,099",
+        originalPrice: "₹2,999",
+        tag: "Bestseller",
+        category: "Office Bag",
+        description: "Carry your elegance everywhere with our signature piece.",
+        image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=1974&auto=format&fit=crop",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false,
+        color: "#B8975A"
+    },
+    {
+        id: 2,
+        name: "Dark Onyx Twin",
+        price: "₹1,199",
+        originalPrice: "₹3,499",
+        tag: "Office Bag",
+        category: "Office Bag",
+        description: "Monochrome mastery for the modern leader.",
+        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1969&auto=format&fit=crop",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false,
+        color: "#0E0D0B"
+    },
+    {
+        id: 3,
+        name: "The Power Statement",
+        price: "₹999",
+        originalPrice: "₹2,499",
+        tag: "New Arrival",
+        category: "Office Bag",
+        description: "Bold aesthetics for the spirited soul.",
+        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=2076&auto=format&fit=crop",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false,
+        color: "#1C1A16"
+    },
+    {
+        id: 4,
+        name: "The Noir Classic",
+        price: "—",
+        originalPrice: "—",
+        tag: "Coming Soon",
+        category: "New Arrival",
+        description: "The next icon in the Dark Luxe collection.",
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1935&auto=format&fit=crop",
+        amazonUrl: "#",
+        isComingSoon: true,
+        color: "#2A2720"
+    }
+];
+
+export const lookbookSlides = [
     {
         type: "intro",
         title: "2026",
@@ -16,56 +83,7 @@ export const lookbookSlides: LookbookSlide[] = [
         originalPrice: "₹2,999",
     },
     {
-        type: "split-left",
-        modelImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2576&auto=format&fit=crop",
-        productImage: "/products/beige-2.jpg",
-        productName: "DARK ONYX TWIN",
-        productSubtitle: "Office Bag",
-        productPrice: "₹1,199",
-        originalPrice: "₹3,499",
-    },
-    {
-        type: "split-right",
-        modelImage: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=2574&auto=format&fit=crop",
-        productImage: "/products/beige-3.jpg",
-        productName: "THE POWER STATEMENT",
-        productSubtitle: "Office Bag",
-        productPrice: "₹999",
-        originalPrice: "₹2,499",
-    },
-    {
         type: "brand-story",
         title: "OUR PHILOSOPHY",
-    },
-];
-
-export const products = [
-    {
-        id: 1,
-        name: "The Classic Beige",
-        price: "₹ 2,499",
-        description: "Timeless elegance with triple-view versatility",
-        images: [
-            "/products/beige-1.jpg",
-            "/products/beige-2.jpg",
-            "/products/beige-3.jpg"
-        ],
-        color: "#dcbfa6", // Beige color
-    },
-    {
-        id: 2,
-        name: "B&W Edition",
-        price: "₹ 2,199",
-        description: "Monochrome mastery for the modern era",
-        images: ["/products/bw-edition.png"],
-        color: "#ffffff",
-    },
-    {
-        id: 3,
-        name: "Viva Vibe",
-        price: "₹ 1,999",
-        description: "Bold aesthetics for the spirited soul",
-        images: ["/products/viva-vibe.png"],
-        color: "#ff8c00",
     },
 ];
