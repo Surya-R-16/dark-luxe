@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
     return (
         <footer className="bg-dark border-t border-gold/12 pt-12 md:pt-[70px] pb-8 px-6 md:px-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-[60px] mb-12 md:mb-[60px]">
                 <div className="flex flex-col gap-4">
-                    <div className="font-serif text-xl font-semibold tracking-[0.15em] text-gold uppercase">
-                        Dark Luxe
-                    </div>
+                    <Image 
+                        src="/logos/white-logo.png" 
+                        alt="Dark Luxe" 
+                        width={120} 
+                        height={60}
+                        className="h-10 w-auto object-contain mb-2"
+                    />
                     <p className="text-xs text-text-muted leading-[1.8] max-w-[260px]">
                         Crafting luxury with elegance — vegan, ethical, and unapologetically refined. Made with love in India.
                     </p>

@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/ui/SmoothScroll";
-import { Analytics } from "@/components/providers/Analytics";
-import { Cursor } from "@/components/ui/Cursor";
-import { PageTransition } from "@/components/ui/PageTransition";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -55,12 +51,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${cormorant.variable} ${jost.variable} scroll-smooth`}>
             <body className="antialiased bg-[#0E0D0B] text-[#F7F4EE] font-jost selection:bg-gold/30">
-                <Cursor />
-                <Analytics />
-                <SmoothScroll />
-                <PageTransition>
-                    {children}
-                </PageTransition>
+                {children}
             </body>
         </html>
     );

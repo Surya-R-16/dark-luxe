@@ -6,64 +6,192 @@ export interface Product {
     tag: string;
     category: string;
     description: string;
-    image: string;
+    images: string[];
+    color: string;
     amazonUrl: string;
     isComingSoon: boolean;
-    color: string;
 }
 
 export const products: Product[] = [
     {
         id: 1,
-        name: "The Ladii Legend",
-        price: "₹1,099",
-        originalPrice: "₹2,999",
+        name: "Landon Bag - Blue",
+        price: "₹1,299",
+        originalPrice: "₹3,499",
         tag: "Bestseller",
-        category: "Office Bag",
-        description: "Carry your elegance everywhere with our signature piece.",
-        image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=1974&auto=format&fit=crop",
+        category: "Landon Collection",
+        description: "Elegant craftsmanship meets modern design in our signature Landon bag. Features premium hardware and luxurious finish.",
+        images: [
+            "/products/Out/Landon bag/Blue/1.jpg",
+            "/products/Out/Landon bag/Blue/2.jpg",
+            "/products/Out/Landon bag/Blue/3.jpg",
+            "/products/Out/Landon bag/Blue/4.jpg",
+            "/products/Out/Landon bag/Blue/5.jpg",
+            "/products/Out/Landon bag/Blue/6.jpg"
+        ],
+        color: "#1E3A5F",
         amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
-        isComingSoon: false,
-        color: "#B8975A"
+        isComingSoon: false
     },
     {
         id: 2,
-        name: "Dark Onyx Twin",
-        price: "₹1,199",
+        name: "Landon Bag - Tan",
+        price: "₹1,299",
         originalPrice: "₹3,499",
-        tag: "Office Bag",
-        category: "Office Bag",
-        description: "Monochrome mastery for the modern leader.",
-        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1969&auto=format&fit=crop",
+        tag: "Bestseller",
+        category: "Landon Collection",
+        description: "Elegant craftsmanship meets modern design in our signature Landon bag. Features premium hardware and luxurious finish.",
+        images: [
+            "/products/Out/Landon bag/Tan/1.jpg",
+            "/products/Out/Landon bag/Tan/2.jpg",
+            "/products/Out/Landon bag/Tan/3.jpg",
+            "/products/Out/Landon bag/Tan/4.jpg",
+            "/products/Out/Landon bag/Tan/5.jpg"
+        ],
+        color: "#B8975A",
         amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
-        isComingSoon: false,
-        color: "#0E0D0B"
+        isComingSoon: false
     },
     {
         id: 3,
-        name: "The Power Statement",
-        price: "₹999",
-        originalPrice: "₹2,499",
+        name: "Landon Bag - Black",
+        price: "₹1,299",
+        originalPrice: "₹3,499",
         tag: "New Arrival",
-        category: "Office Bag",
-        description: "Bold aesthetics for the spirited soul.",
-        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=2076&auto=format&fit=crop",
+        category: "Landon Collection",
+        description: "Elegant craftsmanship meets modern design in our signature Landon bag. Features premium hardware and luxurious finish.",
+        images: [
+            "/products/Out/Landon bag/1.jpg",
+            "/products/Out/Landon bag/2.jpg",
+            "/products/Out/Landon bag/3.jpg",
+            "/products/Out/Landon bag/4.jpg",
+            "/products/Out/Landon bag/5.jpg",
+            "/products/Out/Landon bag/6.jpg"
+        ],
+        color: "#0E0D0B",
         amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
-        isComingSoon: false,
-        color: "#1C1A16"
+        isComingSoon: false
     },
     {
         id: 4,
-        name: "The Noir Classic",
-        price: "—",
-        originalPrice: "—",
-        tag: "Coming Soon",
-        category: "New Arrival",
-        description: "The next icon in the Dark Luxe collection.",
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1935&auto=format&fit=crop",
-        amazonUrl: "#",
-        isComingSoon: true,
-        color: "#2A2720"
+        name: "The Compact Tote - Black",
+        price: "₹999",
+        originalPrice: "₹2,499",
+        tag: "Bestseller",
+        category: "Compact Collection",
+        description: "Perfectly sized for everyday essentials. The Compact Tote combines functionality with elegant styling.",
+        images: [
+            "/products/Out/Small Bag/1.jpg",
+            "/products/Out/Small Bag/2.jpg",
+            "/products/Out/Small Bag/3.jpg",
+            "/products/Out/Small Bag/4.jpg",
+            "/products/Out/Small Bag/5.jpg",
+            "/products/Out/Small Bag/6.jpg",
+            "/products/Out/Small Bag/7.jpg",
+            "/products/Out/Small Bag/8.jpg",
+            "/products/Out/Small Bag/9.jpg"
+        ],
+        color: "#1C1A16",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
+    },
+    {
+        id: 5,
+        name: "The Compact Tote - Tan",
+        price: "₹999",
+        originalPrice: "₹2,499",
+        tag: "New Arrival",
+        category: "Compact Collection",
+        description: "Perfectly sized for everyday essentials. The Compact Tote combines functionality with elegant styling.",
+        images: [
+            "/products/Out/Small Bag/10.jpg",
+            "/products/Out/Small Bag/11.jpg",
+            "/products/Out/Small Bag/12.jpg",
+            "/products/Out/Small Bag/13.jpg",
+            "/products/Out/Small Bag/14.jpg"
+        ],
+        color: "#B8975A",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
+    },
+    {
+        id: 6,
+        name: "The Strap Bag - Black",
+        price: "₹1,199",
+        originalPrice: "₹2,999",
+        tag: "Bestseller",
+        category: "Strap Collection",
+        description: "Hands-free elegance. The Strap Bag offers adjustable comfort with sophisticated design.",
+        images: [
+            "/products/Out/Strap Bag/Black/1.jpg",
+            "/products/Out/Strap Bag/Black/2.jpg",
+            "/products/Out/Strap Bag/Black/3.jpg",
+            "/products/Out/Strap Bag/Black/4.jpg",
+            "/products/Out/Strap Bag/Black/5.jpg",
+            "/products/Out/Strap Bag/Black/6.jpg",
+            "/products/Out/Strap Bag/Black/7.jpg"
+        ],
+        color: "#0E0D0B",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
+    },
+    {
+        id: 7,
+        name: "The Strap Bag - Brown",
+        price: "₹1,199",
+        originalPrice: "₹2,999",
+        tag: "New Arrival",
+        category: "Strap Collection",
+        description: "Hands-free elegance. The Strap Bag offers adjustable comfort with sophisticated design.",
+        images: [
+            "/products/Out/Strap Bag/Brown/1.jpg",
+            "/products/Out/Strap Bag/Brown/2.jpg",
+            "/products/Out/Strap Bag/Brown/3.jpg",
+            "/products/Out/Strap Bag/Brown/4.jpg",
+            "/products/Out/Strap Bag/Brown/5.jpg",
+            "/products/Out/Strap Bag/Brown/6.jpg",
+            "/products/Out/Strap Bag/Brown/Triple Strip copy.jpg"
+        ],
+        color: "#5C4033",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
+    },
+    {
+        id: 8,
+        name: "The Strap Bag - Tan",
+        price: "₹1,199",
+        originalPrice: "₹2,999",
+        tag: "New Arrival",
+        category: "Strap Collection",
+        description: "Hands-free elegance. The Strap Bag offers adjustable comfort with sophisticated design.",
+        images: [
+            "/products/Out/Strap Bag/Tan/1.jpg",
+            "/products/Out/Strap Bag/Tan/2.jpg",
+            "/products/Out/Strap Bag/Tan/3.jpg",
+            "/products/Out/Strap Bag/Tan/4.jpg",
+            "/products/Out/Strap Bag/Tan/5.jpg",
+            "/products/Out/Strap Bag/Tan/6.jpg"
+        ],
+        color: "#B8975A",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
+    },
+    {
+        id: 9,
+        name: "The Classic Beige",
+        price: "₹1,099",
+        originalPrice: "₹2,999",
+        tag: "Bestseller",
+        category: "Beige Collection",
+        description: "Timeless elegance in neutral tones. The Classic Beige is versatile for any occasion.",
+        images: [
+            "/products/beige-1.jpg",
+            "/products/beige-2.jpg",
+            "/products/beige-3.jpg"
+        ],
+        color: "#D4C4A8",
+        amazonUrl: "https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D",
+        isComingSoon: false
     }
 ];
 
@@ -75,10 +203,37 @@ export const lookbookSlides = [
     },
     {
         type: "split-right",
-        modelImage: "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=2574&auto=format&fit=crop",
+        modelImage: "/product-shoot-images/pomelli-image-1.png",
+        productImage: "/products/Out/Landon bag/Tan/3.jpg",
+        productName: "LANDON BAG",
+        productSubtitle: "Landon Collection",
+        productPrice: "₹1,299",
+        originalPrice: "₹3,499",
+    },
+    {
+        type: "split-right",
+        modelImage: "/product-shoot-images/pomelli-image-11.png",
+        productImage: "/products/Out/Small Bag/5.jpg",
+        productName: "COMPACT TOTE",
+        productSubtitle: "Compact Collection",
+        productPrice: "₹999",
+        originalPrice: "₹2,499",
+    },
+    {
+        type: "split-right",
+        modelImage: "/product-shoot-images/pomelli-image-44.png",
+        productImage: "/products/Out/Strap Bag/Black/3.jpg",
+        productName: "STRAP BAG",
+        productSubtitle: "Strap Collection",
+        productPrice: "₹1,199",
+        originalPrice: "₹2,999",
+    },
+    {
+        type: "split-right",
+        modelImage: "/product-shoot-images/pomelli-image-33.png",
         productImage: "/products/beige-1.jpg",
-        productName: "THE LADII LEGEND",
-        productSubtitle: "Office Bag",
+        productName: "CLASSIC BEIGE",
+        productSubtitle: "Beige Collection",
         productPrice: "₹1,099",
         originalPrice: "₹2,999",
     },

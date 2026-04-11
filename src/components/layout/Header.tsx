@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
@@ -28,8 +29,17 @@ export function Header() {
                     : "bg-dark/85 backdrop-blur-sm border-gold/10"
                 }`}
             >
-                <Link href="/" className="font-serif text-xl md:text-2xl font-semibold tracking-[0.12em] text-gold uppercase">
-                    Dark Luxe
+                <Link href="/" className="flex items-center gap-2">
+                    <Image 
+                        src="/logos/white-logo.png" 
+                        alt="Dark Luxe" 
+                        width={40} 
+                        height={40}
+                        className="h-8 w-auto object-contain"
+                    />
+                    <span className="font-serif text-lg md:text-xl font-semibold tracking-[0.12em] text-gold uppercase hidden md:block">
+                        Dark Luxe
+                    </span>
                 </Link>
 
                 <ul className="hidden md:flex items-center gap-9 list-none">

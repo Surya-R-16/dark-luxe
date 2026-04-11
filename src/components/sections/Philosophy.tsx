@@ -16,7 +16,7 @@ export function Philosophy() {
             >
                 <div className="relative aspect-[3/4] w-full max-w-[500px] overflow-hidden">
                     <Image 
-                        src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2576&auto=format&fit=crop" 
+                        src="/product-shoot-images/pomelli-image-33.png" 
                         alt="Our Philosophy"
                         fill
                         className="object-cover brightness-75 grayscale-[20%] transition-transform duration-700 hover:scale-105"

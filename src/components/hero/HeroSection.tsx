@@ -125,7 +125,7 @@ export function HeroSection() {
                         <div
                             className="absolute inset-0 bg-cover bg-center brightness-[0.85]"
                             style={{
-                                backgroundImage: `url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2669&auto=format&fit=crop')`,
+                                backgroundImage: `url('/product-shoot-images/pomelli-image-1.png')`,
                             }}
                         />
                         <div className="absolute inset-0 border border-gold/10" />
