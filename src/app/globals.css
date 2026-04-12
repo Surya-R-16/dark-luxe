@@ -49,6 +49,21 @@ html {
   scrollbar-width: none;
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #2A2720 25%, #3A3730 50%, #2A2720 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

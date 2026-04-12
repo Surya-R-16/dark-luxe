@@ -41,12 +41,12 @@ export function Footer() {
                 </div>
 
                 <div>
-                    <h4 className="text-[10px] tracking-[0.25em] uppercase font-medium text-ivory mb-5">Support</h4>
+                    <h4 className="text-[10px] tracking-[0.25em] uppercase font-medium text-ivory mb-5">Connect</h4>
                     <ul className="list-none p-0 flex flex-col gap-2.5">
-                        <li><Link href="mailto:hello@darkluxe.in" className="text-xs text-text-muted hover:text-gold transition-colors">Contact Us</Link></li>
-                        <li><Link href="/about" className="text-xs text-text-muted hover:text-gold transition-colors">FAQ</Link></li>
-                        <li><Link href="/about" className="text-xs text-text-muted hover:text-gold transition-colors">Shipping & Returns</Link></li>
                         <li><Link href="https://www.instagram.com/darkluxeonline/" target="_blank" className="text-xs text-text-muted hover:text-gold transition-colors">Instagram</Link></li>
+                        <li><Link href="https://wa.me/919677577899" target="_blank" className="text-xs text-text-muted hover:text-gold transition-colors">WhatsApp</Link></li>
+                        <li><Link href="https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" target="_blank" className="text-xs text-text-muted hover:text-gold transition-colors">Amazon</Link></li>
+                        <li><Link href="mailto:hello@darkluxe.in" className="text-xs text-text-muted hover:text-gold transition-colors">Email</Link></li>
                     </ul>
                 </div>
             </div>
