@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -14,14 +14,6 @@ interface ProductGridProps {
     showOriginalPrice?: boolean;
 }
 
-function ProductSkeleton({ className = "" }: { className?: string }) {
-    return (
-        <div className={`bg-dark-soft animate-pulse ${className}`}>
-            <div className="w-full h-full bg-gradient-to-r from-dark-soft via-dark-mid to-dark-soft animate-shimmer" />
-        </div>
-    );
-}
-
 export function ProductGrid({
     products,
     columns = 3,
@@ -29,13 +21,7 @@ export function ProductGrid({
     initialDelay = 0,
     showOriginalPrice = true,
 }: ProductGridProps) {
-    const [isLoading, setIsLoading] = useState(true);
     const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 800);
-        return () => clearTimeout(timer);
-    }, []);
 
     const handleImageLoad = (productId: number) => {
         setLoadedImages((prev) => new Set(prev).add(productId));
@@ -45,16 +31,6 @@ export function ProductGrid({
         columns === 4
             ? "grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
             : "grid-cols-2 md:grid-cols-2 lg:grid-cols-3";
-
-    if (isLoading) {
-        return (
-            <div className={`grid ${colClass} gap-1 md:gap-0.5`}>
-                {products.map((_, index) => (
-                    <ProductSkeleton key={index} className="aspect-[3/4]" />
-                ))}
-            </div>
-        );
-    }
 
     return (
         <div className={`grid ${colClass} gap-1 md:gap-0.5`}>
