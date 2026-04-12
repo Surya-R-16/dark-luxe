@@ -29,17 +29,14 @@ export function Header() {
                     : "bg-dark/85 backdrop-blur-sm border-gold/10"
                 }`}
             >
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center">
                     <Image 
                         src="/logos/white-logo.png" 
                         alt="Dark Luxe" 
-                        width={40} 
-                        height={40}
-                        className="h-8 w-auto object-contain"
+                        width={120} 
+                        height={50}
+                        className="h-10 md:h-12 w-auto object-contain"
                     />
-                    <span className="font-serif text-lg md:text-xl font-semibold tracking-[0.12em] text-gold uppercase hidden md:block">
-                        Dark Luxe
-                    </span>
                 </Link>
 
                 <ul className="hidden md:flex items-center gap-9 list-none">
