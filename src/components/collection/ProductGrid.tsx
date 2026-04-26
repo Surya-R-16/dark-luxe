@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Product } from "@/data/products";
+import { useCart } from "@/components/providers/CartContext";
 
 interface ProductGridProps {
     products: Product[];
@@ -22,9 +23,19 @@ export function ProductGrid({
     showOriginalPrice = true,
 }: ProductGridProps) {
     const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+    const [addedToCart, setAddedToCart] = useState<number | null>(null);
+    const { addToCart } = useCart();
 
     const handleImageLoad = (productId: number) => {
         setLoadedImages((prev) => new Set(prev).add(productId));
+    };
+
+    const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+        e.preventDefault();
+        e.stopPropagation();
+        addToCart(product, 1);
+        setAddedToCart(product.id);
+        setTimeout(() => setAddedToCart(null), 2000);
     };
 
     const colClass =
@@ -76,11 +87,24 @@ export function ProductGrid({
                                     )}
                                 </div>
                             </div>
-                            <div className="absolute top-3 right-3 md:top-5 md:right-5 w-10 h-10 bg-gold/90 flex items-center justify-center opacity-100 md:opacity-0 md:-translate-y-1.5 md:transition-all md:duration-300 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-dark">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </div>
+                            <button
+                                onClick={(e) => handleAddToCart(e, product)}
+                                className={`absolute top-3 right-3 md:top-5 md:right-5 w-10 h-10 flex items-center justify-center transition-all duration-300 ${
+                                    addedToCart === product.id
+                                        ? "bg-green-500 opacity-100"
+                                        : "bg-gold/90 opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                                }`}
+                            >
+                                {addedToCart === product.id ? (
+                                    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-dark">
+                                        <path d="M5 12l5 5L20 7" />
+                                    </svg>
+                                ) : (
+                                    <svg viewBox="0 0 24 24" className="w-4 h-4 fill-dark">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                )}
+                            </button>
                         </motion.div>
                     </Link>
                 );

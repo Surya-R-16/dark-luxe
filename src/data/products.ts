@@ -74,7 +74,7 @@ export const products: Product[] = [
     },
     {
         id: 4,
-        name: "The Compact Tote - Black",
+        name: "Compact Tote - Black",
         price: "₹999",
         originalPrice: "₹2,499",
         tag: "Bestseller",
@@ -97,7 +97,7 @@ export const products: Product[] = [
     },
     {
         id: 5,
-        name: "The Compact Tote - Tan",
+        name: "Compact Tote - Tan",
         price: "₹999",
         originalPrice: "₹2,499",
         tag: "New Arrival",
@@ -116,7 +116,7 @@ export const products: Product[] = [
     },
     {
         id: 6,
-        name: "The Strap Bag - Black",
+        name: "Strap Bag - Black",
         price: "₹1,199",
         originalPrice: "₹2,999",
         tag: "Bestseller",
@@ -137,7 +137,7 @@ export const products: Product[] = [
     },
     {
         id: 7,
-        name: "The Strap Bag - Brown",
+        name: "Strap Bag - Brown",
         price: "₹1,199",
         originalPrice: "₹2,999",
         tag: "New Arrival",
@@ -158,7 +158,7 @@ export const products: Product[] = [
     },
     {
         id: 8,
-        name: "The Strap Bag - Tan",
+        name: "Strap Bag - Tan",
         price: "₹1,199",
         originalPrice: "₹2,999",
         tag: "New Arrival",
@@ -178,7 +178,7 @@ export const products: Product[] = [
     },
     {
         id: 9,
-        name: "The Classic Beige",
+        name: "Classic Beige",
         price: "₹1,099",
         originalPrice: "₹2,999",
         tag: "Bestseller",

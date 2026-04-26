@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/providers/CartContext";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -51,7 +52,9 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${cormorant.variable} ${jost.variable} scroll-smooth`}>
             <body className="antialiased bg-[#0E0D0B] text-[#F7F4EE] font-jost selection:bg-gold/30">
-                {children}
+                <CartProvider>
+                    {children}
+                </CartProvider>
             </body>
         </html>
     );
