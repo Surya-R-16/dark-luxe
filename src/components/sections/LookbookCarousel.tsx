@@ -14,6 +14,7 @@ interface Slide {
     productSubtitle?: string;
     productPrice?: string;
     originalPrice?: string;
+    image?: string;
 }
 
 interface LookbookCarouselProps {
@@ -153,6 +154,36 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                     innovation. For women who lead with purpose and style.
                                 </p>
                             </motion.div>
+                        </motion.div>
+                    )}
+
+                    {slides[currentSlide].type === "full-image" && (
+                        <motion.div
+                            key="full-image"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="absolute inset-0"
+                        >
+                            <div className="relative h-full">
+                                <Image
+                                    src={slides[currentSlide].image || ""}
+                                    alt={slides[currentSlide].title || "Slide"}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent" />
+                                <div className="absolute bottom-20 left-10 text-ivory">
+                                    <div className="text-[10px] tracking-[0.3em] uppercase text-gold mb-2">
+                                        {slides[currentSlide].subtitle}
+                                    </div>
+                                    <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl">
+                                        {slides[currentSlide].title}
+                                    </h2>
+                                </div>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>

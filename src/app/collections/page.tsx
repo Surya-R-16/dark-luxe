@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
@@ -44,33 +45,20 @@ export default function CollectionsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase text-gold mb-4 before:content-[''] before:block before:w-[30px] before:h-[1px] before:bg-gold"
+                        className="flex items-center justify-between mb-8 md:mb-12"
                     >
-                        Collections
+                        <div className="flex items-center gap-4 text-[10px] tracking-[0.35em] uppercase text-gold before:content-[''] before:block before:w-[30px] before:h-[1px] before:bg-gold">
+                            Collections
+                        </div>
+                        <Link 
+                            href="/shop"
+                            className="text-xs tracking-[0.2em] uppercase text-gold hover:text-gold-light transition-colors"
+                        >
+                            View All
+                        </Link>
                     </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="font-serif text-[clamp(32px,8vw,96px)] font-light leading-none tracking-tight text-ivory mb-6"
-                    >
-                        Crafted for <em className="italic text-gold-light">Purpose</em>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-sm md:text-base text-text-light max-w-2xl leading-relaxed"
-                    >
-                        Each Dark Luxe collection represents our commitment to sustainability,
-                        sophistication, and timeless style—designed for women who lead.
-                    </motion.p>
-                </div>
-            </section>
 
-            <section className="pb-12 md:pb-20 px-6 md:px-10">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col gap-16 md:gap-24">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         {collections.map((collection, index) => {
                             const collectionProducts = products.filter(
                                 (p) => p.category === collection.category
@@ -81,35 +69,33 @@ export default function CollectionsPage() {
                                     initial={{ opacity: 0, y: 40 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.8 }}
-                                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12 group"
+                                    transition={{ duration: 0.7, delay: index * 0.1 }}
                                 >
-                                    <div className="w-full md:w-1/2 aspect-[4/5] max-h-[60vh] md:max-h-none relative overflow-hidden bg-dark-soft">
+                                    <Link
+                                        href={`/shop?category=${encodeURIComponent(collection.category)}`}
+                                        className="group block relative aspect-square overflow-hidden bg-dark-soft"
+                                    >
                                         <Image
                                             src={collection.image}
                                             alt={collection.name}
                                             fill
-                                            priority={index === 0}
-                                            className="object-cover group-hover:scale-105 transition-transform duration-700 brightness-75 grayscale-[10%]"
+                                            className="object-cover brightness-75 group-hover:brightness-100 group-hover:scale-110 transition-all duration-700"
                                         />
-                                    </div>
-                                    <div className="w-full md:w-1/2 flex flex-col gap-6">
-                                        <div className="text-[10px] tracking-[0.25em] uppercase text-gold">
-                                            {collectionProducts.length} Products
+                                        <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent" />
+                                        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                                            <div className="text-[9px] md:text-[10px] tracking-[0.25em] uppercase text-gold mb-2">
+                                                {collectionProducts.length} Products
+                                            </div>
+                                            <h2 className="font-serif text-lg md:text-xl lg:text-2xl text-ivory group-hover:text-gold-light transition-colors">
+                                                {collection.name}
+                                            </h2>
                                         </div>
-                                        <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-light text-ivory">
-                                            {collection.name.toUpperCase()}
-                                        </h2>
-                                        <p className="text-[15px] text-text-muted leading-relaxed max-w-md">
-                                            {collection.description}
-                                        </p>
-                                        <a
-                                            href={`/products?category=${encodeURIComponent(collection.category)}`}
-                                            className="text-xs tracking-[0.2em] uppercase text-gold border-b border-gold/30 py-3 w-fit hover:border-gold transition-colors"
-                                        >
-                                            Explore Collection
-                                        </a>
-                                    </div>
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <span className="text-xs tracking-[0.2em] uppercase text-gold border-b border-gold/50 pb-1">
+                                                Explore
+                                            </span>
+                                        </div>
+                                    </Link>
                                 </motion.div>
                             );
                         })}

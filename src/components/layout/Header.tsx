@@ -4,12 +4,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCart } from "@/components/providers/CartContext";
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const { totalItems } = useCart();
+    const [cartCount, setCartCount] = useState(0);
+
+    useEffect(() => {
+        const savedCart = localStorage.getItem("darkluxe-cart");
+        if (savedCart) {
+            try {
+                const items = JSON.parse(savedCart);
+                const count = items.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0);
+                setCartCount(count);
+            } catch {
+                // ignore
+            }
+        }
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -54,9 +66,9 @@ export function Header() {
                         className="relative text-[11px] tracking-[0.18em] uppercase text-text-light hover:text-gold transition-colors"
                     >
                         Bag
-                        {totalItems > 0 && (
+                        {cartCount > 0 && (
                             <span className="absolute -top-2 -right-3 w-4 h-4 bg-gold text-dark text-[10px] font-bold rounded-full flex items-center justify-center">
-                                {totalItems}
+                                {cartCount}
                             </span>
                         )}
                     </Link>

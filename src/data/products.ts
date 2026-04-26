@@ -242,3 +242,30 @@ export const lookbookSlides = [
         title: "OUR PHILOSOPHY",
     },
 ];
+
+export const shootSlides = [
+    {
+        type: "full-image",
+        image: "/product-shoot-images/pomelli-image-1.png",
+        title: "Landon Collection",
+        subtitle: "Elegant Craftsmanship",
+    },
+    {
+        type: "full-image",
+        image: "/product-shoot-images/pomelli-image-11.png",
+        title: "Compact Collection",
+        subtitle: "Perfectly Sized",
+    },
+    {
+        type: "full-image",
+        image: "/product-shoot-images/pomelli-image-44.png",
+        title: "Strap Collection",
+        subtitle: "Hands-Free Elegance",
+    },
+    {
+        type: "full-image",
+        image: "/product-shoot-images/pomelli-image-33.png",
+        title: "Beige Collection",
+        subtitle: "Timeless Elegance",
+    },
+];
