@@ -9,8 +9,10 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [cartCount, setCartCount] = useState(0);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        setIsClient(true);
         const savedCart = localStorage.getItem("darkluxe-cart");
         if (savedCart) {
             try {
@@ -60,7 +62,7 @@ export function Header() {
                     <li><Link href="#contact" className="text-[11px] tracking-[0.18em] uppercase text-text-light hover:text-gold transition-colors">Contact</Link></li>
                 </ul>
 
-                <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-5">
                     <Link 
                         href="/cart" 
                         className="relative text-[11px] tracking-[0.18em] uppercase text-text-light hover:text-gold transition-colors"
@@ -79,16 +81,18 @@ export function Header() {
                     >
                         Shop Now
                     </Link>
-                    
-                    <button 
-                        className="md:hidden flex flex-col gap-1.5 p-3" 
-                        onClick={toggleMenu}
-                        aria-label="Menu"
-                    >
-                        <span className={`block w-6 h-[1px] bg-ivory transition-transform ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-                        <span className={`block w-6 h-[1px] bg-ivory transition-opacity ${isMenuOpen ? "opacity-0" : ""}`}></span>
-                        <span className={`block w-6 h-[1px] bg-ivory transition-transform ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
-                    </button>
+                     
+                    {isClient && (
+                        <button 
+                            className="flex flex-col gap-1.5 p-3" 
+                            onClick={toggleMenu}
+                            aria-label="Menu"
+                        >
+                            <span className={`block w-6 h-[1px] bg-ivory transition-transform ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
+                            <span className={`block w-6 h-[1px] bg-ivory transition-opacity ${isMenuOpen ? "opacity-0" : ""}`}></span>
+                            <span className={`block w-6 h-[1px] bg-ivory transition-transform ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+                        </button>
+                    )}
                 </div>
             </nav>
 
