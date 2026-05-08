@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,14 +23,28 @@ interface LookbookCarouselProps {
 
 export function LookbookCarousel({ slides }: LookbookCarouselProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
 
     const nextSlide = () => {
+        if (isAnimating) return;
+        setIsAnimating(true);
         setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setTimeout(() => setIsAnimating(false), 800);
     };
 
     const prevSlide = () => {
+        if (isAnimating) return;
+        setIsAnimating(true);
         setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+        setTimeout(() => setIsAnimating(false), 800);
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, 6000);
+        return () => clearInterval(interval);
+    }, [slides.length]);
 
     return (
         <section className="relative bg-dark-mid overflow-hidden">
