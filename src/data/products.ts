@@ -203,6 +203,7 @@ export const lookbookSlides = [
     },
     {
         type: "split-right",
+        productId: 2,
         modelImage: "/product-shoot-images/pomelli-image-1.png",
         productImage: "/products/Out/Landon bag/Tan/3.jpg",
         productName: "LANDON BAG",
@@ -212,6 +213,7 @@ export const lookbookSlides = [
     },
     {
         type: "split-right",
+        productId: 4,
         modelImage: "/product-shoot-images/pomelli-image-11.png",
         productImage: "/products/Out/Small Bag/5.jpg",
         productName: "COMPACT TOTE",
@@ -221,6 +223,7 @@ export const lookbookSlides = [
     },
     {
         type: "split-right",
+        productId: 6,
         modelImage: "/product-shoot-images/pomelli-image-44.png",
         productImage: "/products/Out/Strap Bag/Black/3.jpg",
         productName: "STRAP BAG",
@@ -230,6 +233,7 @@ export const lookbookSlides = [
     },
     {
         type: "split-right",
+        productId: 9,
         modelImage: "/product-shoot-images/pomelli-image-33.png",
         productImage: "/products/beige-1.jpg",
         productName: "CLASSIC BEIGE",
@@ -242,6 +246,53 @@ export const lookbookSlides = [
         title: "OUR PHILOSOPHY",
     },
 ];
+
+export const collectionDetails: Record<string, { features: string[]; dimensions: string; care: string; story: string }> = {
+    "Landon Collection": {
+        features: [
+            "Premium vegan leather with structured silhouette",
+            "Gold-tone hardware and signature clasp",
+            "Interior zip pocket + two slip pockets",
+            "Lined interior with brand tag",
+        ],
+        dimensions: 'H 11" × W 14" × D 5" · Handle drop 5"',
+        care: "Wipe with a soft, dry cloth. Store in the dust bag, away from direct sunlight.",
+        story: "The Landon is our signature — a structured tote built for the woman who carries her day with intention. Every seam is finished by hand, every edge painted and polished.",
+    },
+    "Compact Collection": {
+        features: [
+            "Compact proportions for everyday essentials",
+            "Lightweight vegan leather, fully lined",
+            "Secure zip closure with gold-tone pull",
+            "Fits phone, wallet, keys & lipstick",
+        ],
+        dimensions: 'H 9" × W 11" × D 4" · Handle drop 4.5"',
+        care: "Wipe with a soft, dry cloth. Store in the dust bag, away from direct sunlight.",
+        story: "Small in size, deliberate in design. The Compact Tote carries exactly what you need — nothing more, nothing less — in a silhouette that never goes out of style.",
+    },
+    "Strap Collection": {
+        features: [
+            "Hands-free elegance with adjustable strap",
+            "Premium vegan leather, soft to the touch",
+            "Secure magnetic flap closure",
+            "Interior zip pocket for valuables",
+        ],
+        dimensions: 'H 10" × W 12" × D 3.5" · Strap drop 8"–12" (adjustable)',
+        care: "Wipe with a soft, dry cloth. Store in the dust bag, away from direct sunlight.",
+        story: "Freedom of movement, uncompromised style. The Strap Bag rests at the hip and moves with you — from morning commute to evening out.",
+    },
+    "Beige Collection": {
+        features: [
+            "Timeless neutral that pairs with everything",
+            "Premium vegan leather, fully lined",
+            "Gold-tone hardware accents",
+            "Roomy main compartment with zip pocket",
+        ],
+        dimensions: 'H 10.5" × W 13" × D 4.5" · Handle drop 5"',
+        care: "Wipe with a soft, dry cloth. Store in the dust bag, away from direct sunlight.",
+        story: "Some colours are seasons; beige is forever. The Classic Beige is our quiet statement — restraint that reads as confidence.",
+    },
+};
 
 export const shootSlides = [
     {

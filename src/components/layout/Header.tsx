@@ -4,25 +4,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/components/providers/CartContext";
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [cartCount, setCartCount] = useState(0);
     const [isClient, setIsClient] = useState(false);
+    const { totalItems, setIsCartOpen } = useCart();
 
     useEffect(() => {
         setIsClient(true);
-        const savedCart = localStorage.getItem("darkluxe-cart");
-        if (savedCart) {
-            try {
-                const items = JSON.parse(savedCart);
-                const count = items.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0);
-                setCartCount(count);
-            } catch {
-                // ignore
-            }
-        }
     }, []);
 
     useEffect(() => {
@@ -63,17 +54,17 @@ export function Header() {
                 </ul>
 
                     <div className="flex items-center gap-5">
-                    <Link 
-                        href="/cart" 
+                    <button
+                        onClick={() => setIsCartOpen(true)}
                         className="relative text-[11px] tracking-[0.18em] uppercase text-text-light hover:text-gold transition-colors"
                     >
                         Bag
-                        {cartCount > 0 && (
+                        {totalItems > 0 && (
                             <span className="absolute -top-2 -right-3 w-4 h-4 bg-gold text-dark text-[10px] font-bold rounded-full flex items-center justify-center">
-                                {cartCount}
+                                {totalItems}
                             </span>
                         )}
-                    </Link>
+                    </button>
                     <Link 
                         href="https://www.amazon.in/stores/CraftingLuxurywithElegance/page/9ABA5DF8-9F16-40B2-BA1C-1F9BB97AE66D" 
                         target="_blank"

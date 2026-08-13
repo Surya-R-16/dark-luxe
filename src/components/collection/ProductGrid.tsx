@@ -64,11 +64,24 @@ export function ProductGrid({
                                 src={product.images[0]}
                                 alt={product.name}
                                 fill
-                                className={`object-cover brightness-[0.9] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100 ${
+                                className={`object-cover brightness-[0.9] transition-all duration-700 group-hover:scale-110 group-hover:brightness-100 ${
                                     isImageLoaded ? "opacity-100" : "opacity-0"
                                 }`}
                                 onLoad={() => handleImageLoad(product.id)}
                             />
+                            {/* Second angle swaps in on hover */}
+                            {product.images[1] && (
+                                <Image
+                                    src={product.images[1]}
+                                    alt=""
+                                    fill
+                                    className={`object-cover brightness-[0.9] transition-all duration-700 group-hover:opacity-100 group-hover:scale-105 ${
+                                        isImageLoaded ? "opacity-0" : "opacity-0"
+                                    }`}
+                                />
+                            )}
+                            {/* Gold hairline on hover */}
+                            <div className="absolute inset-0 z-20 border border-gold/0 group-hover:border-gold/40 transition-colors duration-500 pointer-events-none" />
                             <div className="absolute inset-x-0 bottom-0 p-3 md:p-6 lg:p-8 bg-gradient-to-t from-dark/95 to-transparent translate-y-2 transition-transform duration-300 group-hover:translate-y-0">
                                 <div className="text-[8px] md:text-[9px] tracking-[0.3em] uppercase text-gold mb-1 md:mb-2">
                                     {product.tag}
@@ -89,7 +102,7 @@ export function ProductGrid({
                             </div>
                             <button
                                 onClick={(e) => handleAddToCart(e, product)}
-                                className={`absolute top-3 right-3 md:top-5 md:right-5 w-10 h-10 flex items-center justify-center transition-all duration-300 ${
+                                className={`absolute top-3 right-3 md:top-5 md:right-5 z-30 w-10 h-10 flex items-center justify-center transition-all duration-300 ${
                                     addedToCart === product.id
                                         ? "bg-green-500 opacity-100"
                                         : "bg-gold/90 opacity-100 md:opacity-0 md:group-hover:opacity-100"

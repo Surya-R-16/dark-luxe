@@ -19,7 +19,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.2}>
             <h1 className="text-3xl md:text-5xl font-serif text-ivory leading-tight mb-8">
-              Crafting Luxury with Elegance
+              Crafting Luxury with <em className="italic text-gold-light">Elegance</em>
             </h1>
           </Reveal>
           <Reveal delay={0.4}>
@@ -57,7 +57,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <h2 className="text-2xl md:text-3xl font-serif text-ivory mb-6 leading-snug">
-                Rooted in Ethical Craftsmanship
+                Rooted in <em className="italic text-gold-light">Ethical</em> Craftsmanship
               </h2>
             </Reveal>
             <Reveal delay={0.3}>
@@ -206,7 +206,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <h2 className="text-2xl md:text-3xl font-serif text-ivory mb-6 leading-snug">
-                Timeless Design, Conscious Choice
+                Timeless Design, <em className="italic text-gold-light">Conscious</em> Choice
               </h2>
             </Reveal>
             <Reveal delay={0.3}>

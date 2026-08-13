@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/providers/CartContext";
+import { Preloader } from "@/components/ui/Preloader";
+import { CartDrawer } from "@/components/ui/CartDrawer";
+import { GrainOverlay } from "@/components/ui/GrainOverlay";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -54,6 +57,9 @@ export default function RootLayout({
             <body className="antialiased bg-[#0E0D0B] text-[#F7F4EE] font-jost selection:bg-gold/30">
                 <CartProvider>
                     {children}
+                    <Preloader />
+                    <CartDrawer />
+                    <GrainOverlay />
                 </CartProvider>
             </body>
         </html>

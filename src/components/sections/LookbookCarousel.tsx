@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface Slide {
     type: string;
+    productId?: number;
     title?: string;
     subtitle?: string;
     modelImage?: string;
@@ -115,7 +116,7 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                         </span>
                                     </div>
                                     <a
-                                        href={slides[currentSlide].productImage ? `/products/1` : "#"}
+                                        href={slides[currentSlide].productId ? `/products/${slides[currentSlide].productId}` : "#"}
                                         className="inline-block border border-gold text-gold px-8 py-3 text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-dark transition-colors"
                                     >
                                         Shop Now
@@ -180,7 +181,12 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                             transition={{ duration: 0.8 }}
                             className="absolute inset-0"
                         >
-                            <div className="relative h-full">
+                            <motion.div
+                                initial={{ scale: 1 }}
+                                animate={{ scale: 1.09 }}
+                                transition={{ duration: 9, ease: "easeOut" }}
+                                className="relative h-full"
+                            >
                                 <Image
                                     src={slides[currentSlide].image || ""}
                                     alt={slides[currentSlide].title || "Slide"}
@@ -188,15 +194,15 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                     className="object-cover"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent" />
-                                <div className="absolute bottom-20 left-10 text-ivory">
-                                    <div className="text-[10px] tracking-[0.3em] uppercase text-gold mb-2">
-                                        {slides[currentSlide].subtitle}
-                                    </div>
-                                    <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl">
-                                        {slides[currentSlide].title}
-                                    </h2>
+                            </motion.div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent" />
+                            <div className="absolute bottom-20 left-10 text-ivory">
+                                <div className="text-[10px] tracking-[0.3em] uppercase text-gold mb-2">
+                                    {slides[currentSlide].subtitle}
                                 </div>
+                                <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl">
+                                    {slides[currentSlide].title}
+                                </h2>
                             </div>
                         </motion.div>
                     )}
