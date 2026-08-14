@@ -204,7 +204,7 @@ export const lookbookSlides = [
     {
         type: "split-right",
         productId: 2,
-        modelImage: "/product-shoot-images/pomelli-image-1.png",
+        modelImage: "/product-shoot-images/pomelli-image-1.jpg",
         productImage: "/products/Out/Landon bag/Tan/3.jpg",
         productName: "LANDON BAG",
         productSubtitle: "Landon Collection",
@@ -214,7 +214,7 @@ export const lookbookSlides = [
     {
         type: "split-right",
         productId: 4,
-        modelImage: "/product-shoot-images/pomelli-image-11.png",
+        modelImage: "/product-shoot-images/pomelli-image-11.jpg",
         productImage: "/products/Out/Small Bag/5.jpg",
         productName: "COMPACT TOTE",
         productSubtitle: "Compact Collection",
@@ -224,7 +224,7 @@ export const lookbookSlides = [
     {
         type: "split-right",
         productId: 6,
-        modelImage: "/product-shoot-images/pomelli-image-44.png",
+        modelImage: "/product-shoot-images/pomelli-image-44.jpg",
         productImage: "/products/Out/Strap Bag/Black/3.jpg",
         productName: "STRAP BAG",
         productSubtitle: "Strap Collection",
@@ -234,7 +234,7 @@ export const lookbookSlides = [
     {
         type: "split-right",
         productId: 9,
-        modelImage: "/product-shoot-images/pomelli-image-33.png",
+        modelImage: "/product-shoot-images/pomelli-image-33.jpg",
         productImage: "/products/beige-1.jpg",
         productName: "CLASSIC BEIGE",
         productSubtitle: "Beige Collection",
@@ -297,25 +297,25 @@ export const collectionDetails: Record<string, { features: string[]; dimensions:
 export const shootSlides = [
     {
         type: "full-image",
-        image: "/product-shoot-images/pomelli-image-1.png",
+        image: "/product-shoot-images/pomelli-image-1.jpg",
         title: "Landon Collection",
         subtitle: "Elegant Craftsmanship",
     },
     {
         type: "full-image",
-        image: "/product-shoot-images/pomelli-image-11.png",
+        image: "/product-shoot-images/pomelli-image-11.jpg",
         title: "Compact Collection",
         subtitle: "Perfectly Sized",
     },
     {
         type: "full-image",
-        image: "/product-shoot-images/pomelli-image-44.png",
+        image: "/product-shoot-images/pomelli-image-44.jpg",
         title: "Strap Collection",
         subtitle: "Hands-Free Elegance",
     },
     {
         type: "full-image",
-        image: "/product-shoot-images/pomelli-image-33.png",
+        image: "/product-shoot-images/pomelli-image-33.jpg",
         title: "Beige Collection",
         subtitle: "Timeless Elegance",
     },
