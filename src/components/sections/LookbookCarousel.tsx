@@ -72,6 +72,12 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                 <h2 className="font-serif text-[clamp(60px,15vw,180px)] font-light text-ivory leading-none">
                                     {slides[currentSlide].title}
                                 </h2>
+                                <a
+                                    href="/collections"
+                                    className="inline-block mt-10 border border-gold text-gold px-8 py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-gold hover:text-dark active:scale-95 transition-all duration-300"
+                                >
+                                    Explore the Collection
+                                </a>
                             </motion.div>
                         </motion.div>
                     )}
@@ -90,7 +96,7 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                     src={slides[currentSlide].modelImage || ""}
                                     alt="Model"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover img-lux"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-r from-dark/50 to-transparent md:hidden" />
                             </div>
@@ -191,7 +197,7 @@ export function LookbookCarousel({ slides }: LookbookCarouselProps) {
                                     src={slides[currentSlide].image || ""}
                                     alt={slides[currentSlide].title || "Slide"}
                                     fill
-                                    className="object-cover"
+                                    className="object-cover img-lux"
                                     priority
                                 />
                             </motion.div>

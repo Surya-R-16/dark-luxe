@@ -5,6 +5,8 @@ import { CartProvider } from "@/components/providers/CartContext";
 import { Preloader } from "@/components/ui/Preloader";
 import { CartDrawer } from "@/components/ui/CartDrawer";
 import { GrainOverlay } from "@/components/ui/GrainOverlay";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -53,12 +55,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${cormorant.variable} ${jost.variable} scroll-smooth`}>
+        <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
             <body className="antialiased bg-[#0E0D0B] text-[#F7F4EE] font-jost selection:bg-gold/30">
                 <CartProvider>
                     {children}
                     <Preloader />
                     <CartDrawer />
+                    <WhatsAppButton />
+                    <SmoothScroll />
                     <GrainOverlay />
                 </CartProvider>
             </body>

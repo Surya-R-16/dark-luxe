@@ -5,34 +5,7 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
-import { products } from "@/data/products";
-
-const collections = [
-    {
-        name: "Landon Collection",
-        description: "Elegant craftsmanship meets modern design. Premium handbags for the sophisticated woman.",
-        image: "/products/Out/Landon bag/Tan/3.jpg",
-        category: "Landon Collection",
-    },
-    {
-        name: "Compact Collection",
-        description: "Perfectly sized for everyday essentials. Functionality meets elegant styling.",
-        image: "/products/Out/Small Bag/5.jpg",
-        category: "Compact Collection",
-    },
-    {
-        name: "Strap Collection",
-        description: "Hands-free elegance. Adjustable comfort with sophisticated design.",
-        image: "/products/Out/Strap Bag/Black/3.jpg",
-        category: "Strap Collection",
-    },
-    {
-        name: "Beige Collection",
-        description: "Timeless elegance in neutral tones. Versatile for any occasion.",
-        image: "/products/beige-1.jpg",
-        category: "Beige Collection",
-    },
-];
+import { products, collections } from "@/data/products";
 
 export default function CollectionsPage() {
     return (

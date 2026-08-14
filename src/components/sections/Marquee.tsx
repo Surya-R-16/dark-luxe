@@ -1,19 +1,19 @@
 export function Marquee() {
     const items = [
-        "Vegan Leather", "Cruelty-Free", "Made in India", 
+        "Vegan Leather", "Cruelty-Free", "Made in India",
         "Ethical Craftsmanship", "Natural Jute", "Eco-Friendly"
     ];
 
     return (
-        <div className="bg-gold py-4 md:py-[14px] overflow-hidden whitespace-nowrap">
+        <div className="bg-dark border-y border-gold/10 py-5 md:py-6 overflow-hidden whitespace-nowrap">
             <div className="inline-block animate-marquee">
                 {/* Double the items for seamless loop */}
                 {[...items, ...items].map((item, idx) => (
                     <span key={idx} className="inline-flex items-center">
-                        <span className="text-[11px] md:text-[10px] tracking-[0.3em] uppercase text-dark font-medium px-8">
+                        <span className="font-serif text-sm md:text-base tracking-[0.3em] uppercase text-gold/90 px-8">
                             {item}
                         </span>
-                        <span className="text-dark/40 px-0">·</span>
+                        <span className="text-gold/30 text-[10px]">◆</span>
                     </span>
                 ))}
             </div>

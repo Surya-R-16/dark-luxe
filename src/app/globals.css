@@ -23,6 +23,21 @@
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Accessible focus indicator */
+  :focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* Unified grading for product imagery — makes mixed shots feel like one campaign */
+  .img-lux {
+    filter: saturate(0.92) contrast(1.05) brightness(0.96);
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
@@ -32,10 +47,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 /* Scrollbar styling - hidden for clean lookbook experience */

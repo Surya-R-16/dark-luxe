@@ -160,7 +160,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                             alt={product.name}
                                             fill
                                             sizes="(max-width: 1024px) 100vw, 50vw"
-                                            className="object-cover"
+                                            className="object-cover img-lux"
                                             priority
                                         />
                                     </motion.div>
@@ -220,7 +220,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                             alt={`${product.name} view ${idx + 1}`}
                                             fill
                                             sizes="80px"
-                                            className="object-cover"
+                                            className="object-cover img-lux"
                                         />
                                     </button>
                                 ))}
@@ -363,7 +363,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                     alt={`${product.name} craftsmanship detail`}
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 50vw"
-                                    className="object-cover"
+                                    className="object-cover img-lux"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
                             </div>
@@ -421,7 +421,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                             alt={relProduct.name}
                                             fill
                                             sizes="(max-width: 768px) 50vw, 33vw"
-                                            className="object-cover brightness-[0.9] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100"
+                                            className="object-cover img-lux brightness-[0.9] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100"
                                         />
                                         <div className="absolute inset-0 border border-gold/0 group-hover:border-gold/40 transition-colors duration-500 pointer-events-none" />
                                     </div>

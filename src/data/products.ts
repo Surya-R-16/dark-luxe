@@ -247,6 +247,37 @@ export const lookbookSlides = [
     },
 ];
 
+export const collections = [
+    {
+        name: "Landon Collection",
+        tagline: "The Signature",
+        description: "Elegant craftsmanship meets modern design. Premium handbags for the sophisticated woman.",
+        image: "/products/Out/Landon bag/Tan/3.jpg",
+        category: "Landon Collection",
+    },
+    {
+        name: "Compact Collection",
+        tagline: "Everyday Essentials",
+        description: "Perfectly sized for everyday essentials. Functionality meets elegant styling.",
+        image: "/products/Out/Small Bag/5.jpg",
+        category: "Compact Collection",
+    },
+    {
+        name: "Strap Collection",
+        tagline: "Hands-Free Elegance",
+        description: "Hands-free elegance. Adjustable comfort with sophisticated design.",
+        image: "/products/Out/Strap Bag/Black/3.jpg",
+        category: "Strap Collection",
+    },
+    {
+        name: "Beige Collection",
+        tagline: "Timeless Neutral",
+        description: "Timeless elegance in neutral tones. Versatile for any occasion.",
+        image: "/products/beige-1.jpg",
+        category: "Beige Collection",
+    },
+];
+
 export const collectionDetails: Record<string, { features: string[]; dimensions: string; care: string; story: string }> = {
     "Landon Collection": {
         features: [

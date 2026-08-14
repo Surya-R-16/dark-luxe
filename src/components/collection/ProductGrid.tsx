@@ -64,7 +64,7 @@ export function ProductGrid({
                                 src={product.images[0]}
                                 alt={product.name}
                                 fill
-                                className={`object-cover brightness-[0.9] transition-all duration-700 group-hover:scale-110 group-hover:brightness-100 ${
+                                className={`object-cover img-lux brightness-[0.9] transition-all duration-700 group-hover:scale-110 group-hover:brightness-100 ${
                                     isImageLoaded ? "opacity-100" : "opacity-0"
                                 }`}
                                 onLoad={() => handleImageLoad(product.id)}
@@ -75,7 +75,7 @@ export function ProductGrid({
                                     src={product.images[1]}
                                     alt=""
                                     fill
-                                    className={`object-cover brightness-[0.9] transition-all duration-700 group-hover:opacity-100 group-hover:scale-105 ${
+                                    className={`object-cover img-lux brightness-[0.9] transition-all duration-700 group-hover:opacity-100 group-hover:scale-105 ${
                                         isImageLoaded ? "opacity-0" : "opacity-0"
                                     }`}
                                 />

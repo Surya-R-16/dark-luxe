@@ -5,6 +5,9 @@ import { shootSlides, products } from "@/data/products";
 import { Philosophy } from "@/components/sections/Philosophy";
 import { NewsletterSection } from "@/components/sections/NewsletterSection";
 import { Marquee } from "@/components/sections/Marquee";
+import { StatementBand } from "@/components/sections/StatementBand";
+import { CollectionTiles } from "@/components/sections/CollectionTiles";
+import { InstagramStrip } from "@/components/sections/InstagramStrip";
 import { ProductGrid } from "@/components/collection/ProductGrid";
 import Link from "next/link";
 
@@ -25,6 +28,8 @@ export default function Home() {
             <Header />
             <LookbookCarousel slides={shootSlides} />
             <Marquee />
+
+            <StatementBand />
             
             <section className="py-16 md:py-[100px] px-6 md:px-10">
                 <div className="max-w-7xl mx-auto">
@@ -45,7 +50,11 @@ export default function Home() {
                 </div>
             </section>
 
+            <CollectionTiles />
+
             <Philosophy />
+
+            <InstagramStrip />
 
             <NewsletterSection />
 
